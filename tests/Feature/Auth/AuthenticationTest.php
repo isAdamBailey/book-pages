@@ -5,6 +5,7 @@ namespace Tests\Feature\Auth;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -41,5 +42,29 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertGuest();
+    }
+
+    public function test_user_inertia_response_for_logged_in_user()
+    {
+        $this->actingAs($user = User::factory()->create());
+
+        $this->get('/dashboard')->assertInertia(
+            fn(Assert $page) => $page
+                ->component('Dashboard')
+                ->url('/dashboard')
+                ->has('auth.user.permissions', 0)
+        );
+
+        // user with page editing permissions
+        $user2 = User::factory()->create();
+        $user2->givePermissionTo('edit pages');
+        $this->actingAs($user2);
+
+        $this->get('/dashboard')->assertInertia(
+            fn(Assert $page) => $page
+                ->component('Dashboard')
+                ->url('/dashboard')
+                ->has('auth.user.permissions', 1)
+        );
     }
 }
