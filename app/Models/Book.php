@@ -13,6 +13,10 @@ class Book extends Model
     use HasFactory;
     use HasSlug;
 
+    protected $fillable = [
+        'title', 'excerpt', 'author'
+    ];
+
     public function pages(): HasMany
     {
         return $this->hasMany(Page::class)->orderBy('page_number');

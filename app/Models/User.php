@@ -8,12 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasPermissions;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +33,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'permissions',
+        'roles',
+        'id',
+        'updated_at',
+        'created_at',
     ];
 
     /**
@@ -46,11 +50,11 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'permissions'
+        'permissions_list'
     ];
 
-    public function getPermissionsAttribute(): Collection
+    public function getPermissionsListAttribute(): Collection
     {
-        return $this->permissions()->pluck('name');
+        return $this->getAllPermissions()->pluck('name');
     }
 }

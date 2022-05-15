@@ -9,7 +9,7 @@ import {Link, usePage} from '@inertiajs/inertia-vue3';
 
 const showingNavigationDropdown = ref(false);
 const canEditPages = computed(() => {
-  return usePage().props.value.auth.user.permissions.includes('edit pages');
+  return usePage().props.value.auth.user.permissions_list.includes('edit pages');
 })
 </script>
 

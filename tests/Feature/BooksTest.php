@@ -13,6 +13,7 @@ use Tests\TestCase;
 class BooksTest extends TestCase
 {
     use RefreshDatabase;
+    use WithFaker;
 
     /**
      * A basic feature test example.
@@ -49,5 +50,33 @@ class BooksTest extends TestCase
                 ->component('Book')
                 ->url('/book/'.$book->slug)
         );
+    }
+
+    public function test_book_cannot_be_stored_without_permissions()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $this->post(route('books.store'))->assertStatus(403);
+    }
+
+    public function test_book_is_stored()
+    {
+        $this->actingAs($user = User::factory()->create());
+        $user->givePermissionTo('edit pages');
+
+        $payload = [
+            'title' => $this->faker->sentence(3),
+            'author' => $this->faker->name(),
+            'excerpt' => $this->faker->paragraph(),
+        ];
+
+        $response = $this->post(route('books.store', $payload));
+
+        $book = Book::first();
+        $this->assertSame($book->title, $payload['title']);
+        $this->assertSame($book->author, $payload['author']);
+        $this->assertSame($book->excerpt, $payload['excerpt']);
+
+        $response->assertRedirect(route('books.show', $book));
     }
 }

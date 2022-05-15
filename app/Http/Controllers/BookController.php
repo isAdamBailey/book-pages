@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class BookController extends Controller
@@ -27,24 +31,16 @@ class BookController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBookRequest  $request
-     * @return Response
+     * @param  StoreBookRequest  $request
+     * @return Application|RedirectResponse|Redirector
+     * @throws ValidationException
      */
-    public function store(StoreBookRequest $request)
+    public function store(StoreBookRequest $request): Redirector|RedirectResponse|Application
     {
-        //
+        $book = Book::create($request->validated());
+        return redirect(route('books.show', $book));
     }
 
     /**
@@ -76,7 +72,7 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBookRequest  $request
+     * @param  UpdateBookRequest  $request
      * @param  Book  $book
      * @return Response
      */
