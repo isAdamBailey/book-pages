@@ -4,7 +4,7 @@
   <BreezeAuthenticatedLayout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ book.title }}
+        {{ book.title }} <span class="text-base text-gray-500">by: {{ book.author }}</span>
       </h2>
     </template>
 
