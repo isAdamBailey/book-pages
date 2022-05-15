@@ -17,7 +17,9 @@ class BookController extends Controller
      */
     public function index(): \Inertia\Response
     {
-        $books = Book::with('pages')->simplePaginate();
+        $books = Book::query()
+            ->withCount('pages')
+            ->simplePaginate();
 
         return Inertia::render('Books', [
             'books' => $books
@@ -48,18 +50,22 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Book  $book
-     * @return Response
+     * @param  Book  $book
+     * @return \Inertia\Response
      */
-    public function show(Book $book)
+    public function show(Book $book): \Inertia\Response
     {
-        //
+        $book = $book->load('pages');
+
+        return Inertia::render('Book', [
+            'book' => $book
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Book  $book
+     * @param  Book  $book
      * @return Response
      */
     public function edit(Book $book)
@@ -71,7 +77,7 @@ class BookController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateBookRequest  $request
-     * @param  \App\Models\Book  $book
+     * @param  Book  $book
      * @return Response
      */
     public function update(UpdateBookRequest $request, Book $book)
@@ -82,7 +88,7 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Book  $book
+     * @param  Book  $book
      * @return Response
      */
     public function destroy(Book $book)

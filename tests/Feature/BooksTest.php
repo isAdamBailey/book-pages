@@ -25,13 +25,29 @@ class BooksTest extends TestCase
 
         $books = Book::factory()->has(Page::factory(13))->count(3)->create();
 
-        $this->get('/books')->assertInertia(
+        $this->get(route('books.index'))->assertInertia(
             fn(Assert $page) => $page
                 ->component('Books')
                 ->url('/books')
                 ->has('books.data', $books->count())
-                ->has('books.data.0.pages', $books[0]->pages()->count())
+                ->has('books.data.0', fn(Assert $page) => $page
+                    ->where('pages_count', $books[0]->pages->count())
+                    ->etc()
+                )
                 ->has('books.per_page')
+        );
+    }
+
+    public function test_book_is_returned()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $book = Book::factory()->has(Page::factory(23))->create();
+
+        $this->get(route('books.show', $book))->assertInertia(
+            fn(Assert $page) => $page
+                ->component('Book')
+                ->url('/book/'.$book->id)
         );
     }
 }

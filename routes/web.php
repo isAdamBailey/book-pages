@@ -30,7 +30,8 @@ Route::middleware(['auth'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/books', [BookController::class, 'index'])->name('books');
+    Route::get('/books', [BookController::class, 'index'])->name('books.index');
+    Route::get('/book/{book}', [BookController::class, 'show'])->name('books.show');
 });
 
 require __DIR__.'/auth.php';
