@@ -12,6 +12,6 @@ class Book extends Model
 
     public function pages(): BelongsToMany
     {
-        return $this->belongsToMany(Page::class);
+        return $this->belongsToMany(Page::class)->orderBy('page_number');
     }
 }

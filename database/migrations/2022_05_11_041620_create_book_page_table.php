@@ -19,7 +19,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Book::class);
             $table->foreignIdFor(Page::class);
-            $table->timestamps();
         });
     }
 

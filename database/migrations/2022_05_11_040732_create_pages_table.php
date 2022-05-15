@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->integer('sort_id');
+            $table->integer('page_number');
             $table->longText('content');
+            $table->string('image_path');
             $table->timestamps();
         });
     }
