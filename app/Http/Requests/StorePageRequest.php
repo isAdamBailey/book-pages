@@ -13,7 +13,7 @@ class StorePageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StorePageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'page_number' => 'integer|required',
+            'content' => 'string',
+            'image' => 'file|mimes:jpg,jpeg,webp,gif,png,svg'
         ];
     }
 }

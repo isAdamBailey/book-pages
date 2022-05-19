@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\Book::class);
             $table->integer('page_number');
             $table->longText('content');
-            $table->string('image_path');
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }

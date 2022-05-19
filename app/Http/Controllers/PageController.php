@@ -4,39 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePageRequest;
 use App\Http\Requests\UpdatePageRequest;
+use App\Models\Book;
 use App\Models\Page;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 class PageController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePageRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  StorePageRequest  $request
+     * @return Application|RedirectResponse|Redirector
      */
-    public function store(StorePageRequest $request)
+    public function store(StorePageRequest $request): Redirector|RedirectResponse|Application
     {
-        //
+        $book = Book::find($request->book_id);
+        $book->pages()->create([
+            'content' => $request->input('content'),
+            'page_number' => $request->page_number,
+        ]);
+        return redirect(route('books.show', $book));
     }
 
     /**
@@ -46,17 +35,6 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Page $page)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Page  $page
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Page $page)
     {
         //
     }

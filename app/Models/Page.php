@@ -12,6 +12,12 @@ class Page extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'page_number',
+        'content',
+        'image_path'
+    ];
+
     public function getImagePathAttribute($value): string
     {
         if (Str::startsWith($value, 'https://')) {

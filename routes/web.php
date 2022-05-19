@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\PageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['middleware' => ['can:edit pages']], function () {
         Route::post('/books', [BookController::class, 'store'])->name('books.store');
+        Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
     });
 });
 
