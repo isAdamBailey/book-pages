@@ -50,9 +50,9 @@ class AuthenticationTest extends TestCase
 
         $this->get('/dashboard')->assertInertia(
             fn(Assert $page) => $page
-                ->component('Dashboard')
+                ->component('Dashboard/Index')
                 ->url('/dashboard')
-                ->has('auth.user.permissions', 0)
+                ->has('auth.user.permissions_list', 0)
         );
 
         // user with page editing permissions
@@ -62,9 +62,9 @@ class AuthenticationTest extends TestCase
 
         $this->get('/dashboard')->assertInertia(
             fn(Assert $page) => $page
-                ->component('Dashboard')
+                ->component('Dashboard/Index')
                 ->url('/dashboard')
-                ->has('auth.user.permissions', 1)
+                ->has('auth.user.permissions_list', 1)
         );
     }
 }

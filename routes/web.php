@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard/Index');
     })->name('dashboard');
 
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
