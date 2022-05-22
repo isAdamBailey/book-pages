@@ -26,7 +26,7 @@ class StorePageRequest extends FormRequest
         return [
             'page_number' => 'integer|required',
             'content' => 'string',
-            'image' => 'file|mimes:jpg,jpeg,webp,gif,png,svg'
+            'image' => 'image|nullable'
         ];
     }
 }

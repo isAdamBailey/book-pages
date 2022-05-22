@@ -6,6 +6,8 @@ use App\Models\Book;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class PagesTest extends TestCase
@@ -22,6 +24,8 @@ class PagesTest extends TestCase
 
     public function test_page_is_stored_to_book()
     {
+        Storage::fake('s3');
+
         $this->actingAs($user = User::factory()->create());
         $user->givePermissionTo('edit pages');
         $book = Book::factory()->create();
@@ -30,11 +34,16 @@ class PagesTest extends TestCase
             'book_id' => $book->id,
             'page_number' => $this->faker->unique()->randomDigit(),
             'content' => $this->faker->paragraph(),
+            'image' => UploadedFile::fake()->image('photo1.jpg')
         ];
 
-        $response = $this->post(route('pages.store', $payload));
+        $response = $this->post(route('pages.store'), $payload);
+
+        $filePath = 'book/'.$book->slug.'/'.$payload['image']->hashName();
+        Storage::disk('s3')->assertExists($filePath);
 
         $page = Book::first()->pages()->first();
+        $this->assertSame($page->image_path, Storage::url($filePath));
         $this->assertSame($page->page_number, $payload['page_number']);
         $this->assertSame($page->content, $payload['content']);
 

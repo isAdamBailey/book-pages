@@ -21,10 +21,16 @@ class PageController extends Controller
     public function store(StorePageRequest $request): Redirector|RedirectResponse|Application
     {
         $book = Book::find($request->book_id);
+        $image = $request->hasFile('image')
+            ? $request->file('image')->storePublicly('book/'.$book->slug)
+            : '';
+
         $book->pages()->create([
             'content' => $request->input('content'),
             'page_number' => $request->page_number,
+            'image_path' => $image
         ]);
+
         return redirect(route('books.show', $book));
     }
 
