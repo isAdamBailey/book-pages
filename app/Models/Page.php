@@ -24,7 +24,7 @@ class Page extends Model
             return $value;
         }
 
-        return Storage::url($value);
+        return $value ?? Storage::url($value);
     }
 
     public function book(): BelongsTo

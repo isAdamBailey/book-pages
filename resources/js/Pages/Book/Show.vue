@@ -10,9 +10,12 @@
 
     <template #authenticated-actions>
       <div class="flex mt-5 mx-5">
-        <Button v-if="!newPageFormOpen" @click="newPageFormOpen = true" class="w-full flex justify-center py-5">Add New
-          Page
-        </Button>
+        <div v-if="!newPageFormOpen" class="w-full">
+          <Button v-if="!newPageFormOpen" @click="newPageFormOpen = true" class="w-full flex justify-center py-5">Add
+            New
+            Page
+          </Button>
+        </div>
         <NewPageForm v-else @close-form="newPageFormOpen = false" :book="book"/>
       </div>
     </template>
@@ -27,7 +30,7 @@
             <p>{{ page.page_number }}</p>
           </div>
 
-          <img class="mb-7" :src="page.image_path" alt="image">
+          <img v-if="page.image_path" class="mb-7" :src="page.image_path" alt="image">
           <p class="prose">{{ page.content }}</p>
         </div>
       </div>

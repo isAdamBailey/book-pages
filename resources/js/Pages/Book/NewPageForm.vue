@@ -7,7 +7,6 @@ import Button from "@/Components/Button";
 import {ref} from "vue";
 
 const emit = defineEmits(['close-form'])
-
 const props = defineProps({
   book: Object
 })
@@ -62,16 +61,17 @@ const submit = () => {
     <BreezeValidationErrors class="mb-4"/>
   </div>
 
-  <form @submit.prevent="submit">
-    <div>
-      <BreezeLabel for="imageInput" value="Image"/>
-      <input
-          ref="imageInput"
-          type="file"
-          class="hidden"
-          @change="updateImagePreview"
-      />
-      <div v-show="imagePreview" class="mt-2">
+  <form @submit.prevent="submit" class="w-full ">
+    <div class="flex justify-around">
+      <div>
+        <BreezeLabel for="imageInput" value="Image"/>
+        <input
+            ref="imageInput"
+            type="file"
+            class="hidden"
+            @change="updateImagePreview"
+        />
+        <div v-show="imagePreview" class="mt-2">
         <span
             class="block h-40 w-40 rounded-full bg-cover bg-center bg-no-repeat"
             :style="
@@ -79,32 +79,34 @@ const submit = () => {
             "
         >
         </span>
+        </div>
+
+        <Button
+            class="mt-2 mr-2"
+            type="button"
+            @click.prevent="selectNewImage"
+        >
+          Select An Image
+        </Button>
       </div>
 
-      <Button
-          class="mt-2 mr-2"
-          type="button"
-          @click.prevent="selectNewImage"
-      >
-        Select An Image
-      </Button>
+      <div>
+        <div class="mt-4">
+          <BreezeLabel for="page_number" value="Page Number"/>
+          <BreezeInput id="page_number" type="number" class="mt-1 block w-full" v-model="form.page_number" required
+                       autocomplete="page_number"/>
+        </div>
 
+        <div class="mt-4">
+          <BreezeLabel for="content" value="Contents"/>
+          <BreezeInput id="content" type="text" class="mt-1 block w-full" v-model="form.content" required
+                       autocomplete="content"/>
+        </div>
+      </div>
     </div>
 
-    <div class="mt-4">
-      <BreezeLabel for="page_number" value="Page Number"/>
-      <BreezeInput id="page_number" type="number" class="mt-1 block w-full" v-model="form.page_number" required
-                   autocomplete="page_number"/>
-    </div>
-
-    <div class="mt-4">
-      <BreezeLabel for="content" value="Contents"/>
-      <BreezeInput id="content" type="text" class="mt-1 block w-full" v-model="form.content" required
-                   autocomplete="content"/>
-    </div>
-
-    <div class="flex items-center justify-end mt-4">
-      <Button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+    <div class="flex justify-center mt-4">
+      <Button class="w-3/4 flex justify-center py-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
         Create!
       </Button>
     </div>
