@@ -53,7 +53,7 @@ class BookController extends Controller
     {
         $book = $book->load('pages');
 
-        return Inertia::render('Book', [
+        return Inertia::render('Book/Show', [
             'book' => $book
         ]);
     }

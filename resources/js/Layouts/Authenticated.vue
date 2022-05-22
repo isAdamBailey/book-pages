@@ -119,6 +119,7 @@ const canEditPages = computed(() => {
 
       <!-- Page Content -->
       <main>
+        <slot v-if="canEditPages" name="authenticated-actions" />
         <slot/>
       </main>
     </div>

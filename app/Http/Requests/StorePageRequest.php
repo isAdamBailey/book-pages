@@ -25,7 +25,7 @@ class StorePageRequest extends FormRequest
     {
         return [
             'page_number' => 'integer|required',
-            'content' => 'string',
+            'content' => 'string|required',
             'image' => 'image|nullable'
         ];
     }

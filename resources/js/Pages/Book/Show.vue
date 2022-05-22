@@ -10,10 +10,10 @@
 
     <template #authenticated-actions>
       <div class="flex mt-5 mx-5">
-        <Button v-if="!newPageFormOpen" @click="newPageFormOpen = true" class="w-full flex justify-center py-5">Add New Page</Button>
-        <div v-if="newPageFormOpen" class="bg-white overflow-hidden shadow">
-          wdwcw
-        </div>
+        <Button v-if="!newPageFormOpen" @click="newPageFormOpen = true" class="w-full flex justify-center py-5">Add New
+          Page
+        </Button>
+        <NewPageForm v-else @close-form="newPageFormOpen = false" :book="book"/>
       </div>
     </template>
 
@@ -40,6 +40,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import {Head} from '@inertiajs/inertia-vue3';
 import Button from "@/Components/Button";
 import {ref} from "vue";
+import NewPageForm from "@/Pages/Book/NewPageForm";
 
 defineProps({
   book: Object,

@@ -47,7 +47,7 @@ class BooksTest extends TestCase
 
         $this->get(route('books.show', $book))->assertInertia(
             fn(Assert $page) => $page
-                ->component('Book')
+                ->component('Book/Show')
                 ->url('/book/'.$book->slug)
         );
     }
