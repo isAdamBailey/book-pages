@@ -20,11 +20,11 @@ class Page extends Model
 
     public function getImagePathAttribute($value): string
     {
-        if (Str::startsWith($value, 'https://')) {
+        if (Str::startsWith($value, 'https://') || empty($value)) {
             return $value;
         }
 
-        return $value ?? Storage::url($value);
+        return Storage::url($value);
     }
 
     public function book(): BelongsTo
