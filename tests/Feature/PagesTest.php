@@ -43,7 +43,7 @@ class PagesTest extends TestCase
         Storage::disk('s3')->assertExists($filePath);
 
         $page = Book::first()->pages()->first();
-        $this->assertSame($page->image_path, Storage::url($filePath));
+        $this->assertSame($page->image_path, $filePath);
         $this->assertSame($page->page_number, $payload['page_number']);
         $this->assertSame($page->content, $payload['content']);
 
