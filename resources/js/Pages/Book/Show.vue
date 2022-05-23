@@ -37,12 +37,18 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import {Head} from '@inertiajs/inertia-vue3';
 import Button from "@/Components/Button";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import NewPageForm from "@/Pages/Book/NewPageForm";
 
-defineProps({
+const props = defineProps({
   book: Object,
 });
 
-const newPageFormOpen = ref(false)
+let newPageFormOpen = ref(false)
+
+onMounted(() => {
+  if (props.book.pages.length < 1) {
+    newPageFormOpen.value = true
+  }
+})
 </script>
