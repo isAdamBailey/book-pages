@@ -5,6 +5,7 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import {useForm} from '@inertiajs/inertia-vue3';
 import Button from "@/Components/Button";
 import {ref} from "vue";
+import TextArea from "@/Components/TextArea";
 
 const emit = defineEmits(['close-form'])
 const props = defineProps({
@@ -12,7 +13,6 @@ const props = defineProps({
 })
 const form = useForm({
   book_id: props.book.id,
-  page_number: '',
   content: '',
   image: null,
 });
@@ -61,9 +61,9 @@ const submit = () => {
     <BreezeValidationErrors class="mb-4"/>
   </div>
 
-  <form @submit.prevent="submit" class="w-full ">
-    <div class="flex justify-around">
-      <div>
+  <form @submit.prevent="submit" class="w-full mb-10">
+    <div class="flex flex-wrap md:justify-center">
+      <div class="mr-3 mb-3 md:mb-0">
         <BreezeLabel for="imageInput" value="Image"/>
         <input
             ref="imageInput"
@@ -72,13 +72,9 @@ const submit = () => {
             @change="updateImagePreview"
         />
         <div v-show="imagePreview" class="mt-2">
-        <span
-            class="block h-40 w-40 rounded-full bg-cover bg-center bg-no-repeat"
-            :style="
-                'background-image: url(\'' + imagePreview + '\');'
-            "
-        >
-        </span>
+          <span class="block h-40 w-40 rounded bg-cover bg-center bg-no-repeat"
+                :style="'background-image: url(\'' + imagePreview + '\');'">
+          </span>
         </div>
 
         <Button
@@ -90,23 +86,16 @@ const submit = () => {
         </Button>
       </div>
 
-      <div>
-        <div class="mt-4">
-          <BreezeLabel for="page_number" value="Page Number"/>
-          <BreezeInput id="page_number" type="number" class="mt-1 block w-full" v-model="form.page_number" required
-                       autocomplete="page_number"/>
-        </div>
-
-        <div class="mt-4">
-          <BreezeLabel for="content" value="Contents"/>
-          <BreezeInput id="content" type="text" class="mt-1 block w-full" v-model="form.content" required
-                       autocomplete="content"/>
-        </div>
+      <div class="w-full md:w-1/2">
+        <BreezeLabel for="content" value="Words"/>
+        <TextArea v-model="form.content" id="content" class="mt-1 block w-full" required
+                  autocomplete="content"/>
       </div>
     </div>
 
     <div class="flex justify-center mt-4">
-      <Button class="w-3/4 flex justify-center py-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+      <Button class="w-1/2 flex justify-center py-3" :class="{ 'opacity-25': form.processing }"
+              :disabled="form.processing">
         Create!
       </Button>
     </div>

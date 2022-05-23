@@ -9,7 +9,7 @@
     </template>
 
     <template #authenticated-actions>
-      <div class="flex mt-5 mx-5">
+      <div class="flex mb-10 mt-5 mx-5">
         <div v-if="!newPageFormOpen" class="w-full">
           <Button v-if="!newPageFormOpen" @click="newPageFormOpen = true" class="w-full flex justify-center py-5">Add
             New
@@ -25,8 +25,8 @@
     >
       <div v-for="page in book.pages" :key="page.id" class="bg-white overflow-hidden shadow-sm rounded">
         <div class="p-1 bg-white">
-          <img v-if="page.image_path" class="mb-7 rounded" :src="page.image_path" alt="image">
-          <p class="prose">{{ page.content }}</p>
+          <img v-if="page.image_path" class="rounded" :src="page.image_path" alt="image">
+          <p class="prose px-3 py-3">{{ page.content }}</p>
         </div>
       </div>
     </div>

@@ -23,6 +23,7 @@ class BookController extends Controller
     {
         $books = Book::query()
             ->withCount('pages')
+            ->orderBy('updated_at', 'desc')
             ->simplePaginate();
 
         return Inertia::render('Books', [

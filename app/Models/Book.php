@@ -19,7 +19,8 @@ class Book extends Model
 
     public function pages(): HasMany
     {
-        return $this->hasMany(Page::class);
+        return $this->hasMany(Page::class)
+            ->orderBy('updated_at', 'desc');
     }
 
     public function getSlugOptions() : SlugOptions
