@@ -19,7 +19,7 @@ class Book extends Model
 
     public function pages(): HasMany
     {
-        return $this->hasMany(Page::class)->orderBy('page_number');
+        return $this->hasMany(Page::class);
     }
 
     public function getSlugOptions() : SlugOptions

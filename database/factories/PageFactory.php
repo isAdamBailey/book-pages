@@ -18,8 +18,7 @@ class PageFactory extends Factory
     {
         return [
             'content' => $this->faker->paragraphs(3,true),
-            'image_path' => $this->faker->imageUrl(),
-            'page_number' => $this->faker->unique(true)->numberBetween(1, 15)
+            'image_path' => $this->faker->imageUrl()
         ];
     }
 }

@@ -32,7 +32,6 @@ class PagesTest extends TestCase
 
         $payload = [
             'book_id' => $book->id,
-            'page_number' => $this->faker->unique()->randomDigit(),
             'content' => $this->faker->paragraph(),
             'image' => UploadedFile::fake()->image('photo1.jpg')
         ];
@@ -42,9 +41,8 @@ class PagesTest extends TestCase
         $filePath = 'book/'.$book->slug.'/'.$payload['image']->hashName();
         Storage::disk('s3')->assertExists($filePath);
 
-        $page = Book::first()->pages()->first();
-        $this->assertSame($page->image_path, $filePath);
-        $this->assertSame($page->page_number, $payload['page_number']);
+        $page = Book::find($book->id)->pages->first();
+        $this->assertSame($page->image_path, Storage::url($filePath));
         $this->assertSame($page->content, $payload['content']);
 
         $response->assertRedirect(route('books.show', $book));

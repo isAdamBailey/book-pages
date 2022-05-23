@@ -23,14 +23,9 @@
     <div
         class="mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(22rem,1fr))] gap-2 md:p-4"
     >
-      <div v-for="page in book.pages" :key="page.id" class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white">
-          <div class="text-gray-500 text-sm flex justify-between mb-5">
-            <p>Page</p>
-            <p>{{ page.page_number }}</p>
-          </div>
-
-          <img v-if="page.image_path" class="mb-7" :src="page.image_path" alt="image">
+      <div v-for="page in book.pages" :key="page.id" class="bg-white overflow-hidden shadow-sm rounded">
+        <div class="p-1 bg-white">
+          <img v-if="page.image_path" class="mb-7 rounded" :src="page.image_path" alt="image">
           <p class="prose">{{ page.content }}</p>
         </div>
       </div>

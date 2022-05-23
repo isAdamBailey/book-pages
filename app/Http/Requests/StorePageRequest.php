@@ -24,7 +24,7 @@ class StorePageRequest extends FormRequest
     public function rules()
     {
         return [
-            'page_number' => 'integer|required',
+            'book_id' => 'integer|required',
             'content' => 'string|required',
             'image' => 'image|nullable'
         ];
