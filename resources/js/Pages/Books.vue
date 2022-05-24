@@ -16,7 +16,7 @@
         <div class="p-6 bg-white">
           <div class="flex flex-wrap justify-between mb-5">
             <h3 class="font-bold text-lg">{{ book.title }}</h3>
-            <p class="text-sm text-grey-500">by: {{ book.author }}</p>
+            <p v-if="book.author" class="text-sm text-grey-500">by: {{ book.author }}</p>
           </div>
           <p class="prose mb-5">{{ book.excerpt }}</p>
           <p class="text-sm text-gray-500">{{ book.pages_count }} pages</p>

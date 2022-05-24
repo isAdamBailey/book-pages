@@ -49,6 +49,7 @@ class BooksTest extends TestCase
             fn(Assert $page) => $page
                 ->component('Book/Show')
                 ->url('/book/'.$book->slug)
+                ->has('book.title')
         );
     }
 
@@ -78,5 +79,37 @@ class BooksTest extends TestCase
         $this->assertSame($book->excerpt, $payload['excerpt']);
 
         $response->assertRedirect(route('books.show', $book));
+    }
+
+    public function test_book_cannot_be_updated_without_permissions()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $book = Book::factory()->create();
+
+        $this->put(route('books.update', $book))->assertStatus(403);
+    }
+
+    public function test_book_is_updated()
+    {
+        $this->actingAs($user = User::factory()->create());
+        $user->givePermissionTo('edit pages');
+
+        $book = Book::factory()->create();
+
+        $payload = [
+            'title' => $this->faker->sentence(3),
+            'author' => $this->faker->name(),
+        ];
+
+        $response = $this->put(route('books.update', $book->slug), $payload);
+
+        $freshBook = Book::find($book->id);
+        $this->assertSame($freshBook->title, $payload['title']);
+        $this->assertSame($freshBook->author, $payload['author']);
+        // make sure one that didn't update does not change
+        $this->assertSame($freshBook->excerpt, $book->excerpt);
+
+        $response->assertRedirect(route('books.show', $freshBook));
     }
 }

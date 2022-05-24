@@ -60,26 +60,16 @@ class BookController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Book  $book
-     * @return Response
-     */
-    public function edit(Book $book)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  UpdateBookRequest  $request
      * @param  Book  $book
-     * @return Response
+     * @return Application|Redirector|RedirectResponse
      */
-    public function update(UpdateBookRequest $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book): Application|RedirectResponse|Redirector
     {
-        //
+        $book->update($request->validated());
+        return redirect(route('books.show', Book::find($book->id)));
     }
 
     /**

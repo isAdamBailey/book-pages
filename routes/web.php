@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['middleware' => ['can:edit pages']], function () {
         Route::post('/books', [BookController::class, 'store'])->name('books.store');
+        Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
         Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
     });
 });
