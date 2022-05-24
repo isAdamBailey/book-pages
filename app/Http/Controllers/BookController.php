@@ -7,8 +7,8 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
@@ -76,10 +76,16 @@ class BookController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Book  $book
-     * @return Response
+     * @return Application|Redirector|RedirectResponse
      */
-    public function destroy(Book $book)
+    public function destroy(Book $book): Redirector|RedirectResponse|Application
     {
-        //
+        foreach ($book->pages() as $page) {
+            Storage::disk('s3')->delete($page->image_path);
+        }
+        $book->pages()->delete();
+        $book->delete();
+
+        return redirect(route('dashboard'));
     }
 }

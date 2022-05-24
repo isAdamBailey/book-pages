@@ -112,4 +112,20 @@ class BooksTest extends TestCase
 
         $response->assertRedirect(route('books.show', $freshBook));
     }
+
+    public function test_book_is_destroyed()
+    {
+        $this->actingAs($user = User::factory()->create());
+        $user->givePermissionTo('edit pages');
+
+        $book = Book::factory()->has(Page::factory()->count(5))->create();
+        $this->assertCount(5, Page::where('book_id', $book->id)->get());
+
+        $response = $this->delete(route('books.destroy', $book->slug));
+
+        $this->assertNull(Book::find($book->id));
+        $this->assertCount(0, Page::where('book_id', $book->id)->get());
+
+        $response->assertRedirect(route('dashboard'));
+    }
 }
