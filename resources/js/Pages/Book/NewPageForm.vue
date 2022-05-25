@@ -58,7 +58,7 @@ const submit = () => {
 </script>
 
 <template>
-  <div class=" bg-white rounded mb-5 md:mb-0 md:mr-5 p-5 md:w-3/4">
+  <div class="bg-white rounded mb-5 md:mb-0 md:mr-5 p-5 md:w-3/4">
     <h3 class="text-2xl w-full border-b mb-7">Add a New Page</h3>
     <form @submit.prevent="submit">
       <div class="flex flex-wrap">
@@ -92,7 +92,7 @@ const submit = () => {
         </div>
       </div>
 
-      <div class="flex justify-center mt-4">
+      <div class="flex justify-center mt-5 md:mt-20">
         <Button class="w-3/4 flex justify-center py-3" :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing">
           Create!

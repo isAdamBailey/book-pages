@@ -2,6 +2,7 @@
 import BreezeButton from '@/Components/Button.vue';
 import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
+import DeleteForm from "@/Pages/Book/DeleteForm";
 import {useForm} from '@inertiajs/inertia-vue3';
 import TextArea from "@/Components/TextArea";
 
@@ -48,5 +49,6 @@ const submit = () => {
         </BreezeButton>
       </div>
     </form>
+    <DeleteForm :book="book" />
   </div>
 </template>

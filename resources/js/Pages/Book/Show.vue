@@ -23,6 +23,7 @@
             <NewPageForm @close-form="settingsOpen = false" :book="book"/>
             <EditForm :book="book"/>
           </div>
+
         </div>
       </div>
     </template>
