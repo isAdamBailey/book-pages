@@ -1,7 +1,13 @@
 <script setup>
 import {onMounted, ref} from 'vue';
 
-defineProps(['modelValue']);
+defineProps({
+  modelValue: String,
+  size: {
+    type: String,
+    default: 'lg'
+  }
+});
 
 defineEmits(['update:modelValue']);
 
@@ -19,6 +25,6 @@ onMounted(() => {
         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm prose"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
-        rows="7"
-        ref="input" />
+        :rows="size === 'sm' ? 4 : 7"
+        ref="input"/>
 </template>

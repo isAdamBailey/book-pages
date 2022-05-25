@@ -1,16 +1,16 @@
 <script setup>
-import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import {useForm} from '@inertiajs/inertia-vue3';
 import Button from "@/Components/Button";
 import {ref} from "vue";
 import TextArea from "@/Components/TextArea";
 
 const emit = defineEmits(['close-form'])
+
 const props = defineProps({
   book: Object
 })
+
 const form = useForm({
   book_id: props.book.id,
   content: '',
@@ -18,6 +18,7 @@ const form = useForm({
 });
 
 const imagePreview = ref(null)
+
 const imageInput = ref(null)
 
 function selectNewImage() {
@@ -57,47 +58,46 @@ const submit = () => {
 </script>
 
 <template>
-  <div class="flex">
-    <BreezeValidationErrors class="mb-4"/>
-  </div>
-
-  <form @submit.prevent="submit" class="w-full mb-10">
-    <div class="flex flex-wrap md:justify-center">
-      <div class="mr-3 mb-3 md:mb-0">
-        <BreezeLabel for="imageInput" value="Image"/>
-        <input
-            ref="imageInput"
-            type="file"
-            class="hidden"
-            @change="updateImagePreview"
-        />
-        <div v-show="imagePreview" class="mt-2">
+  <div class=" bg-white rounded mb-5 md:mb-0 md:mr-5 p-5 md:w-3/4">
+    <h3 class="text-2xl w-full border-b mb-7">Add a New Page</h3>
+    <form @submit.prevent="submit">
+      <div class="flex flex-wrap">
+        <div class="w-full md:w-1/4">
+          <BreezeLabel for="imageInput" value="Image"/>
+          <input
+              ref="imageInput"
+              type="file"
+              class="hidden"
+              @change="updateImagePreview"
+          />
+          <div v-show="imagePreview" class="mt-2">
           <span class="block h-40 w-40 rounded bg-cover bg-center bg-no-repeat"
                 :style="'background-image: url(\'' + imagePreview + '\');'">
           </span>
+          </div>
+
+          <Button
+              class="mt-2 mr-2"
+              type="button"
+              @click.prevent="selectNewImage"
+          >
+            Select An Image
+          </Button>
         </div>
 
-        <Button
-            class="mt-2 mr-2"
-            type="button"
-            @click.prevent="selectNewImage"
-        >
-          Select An Image
+        <div class="w-full md:w-3/4">
+          <BreezeLabel for="content" value="Words"/>
+          <TextArea v-model="form.content" id="content" class="mt-1 block w-full" required
+                    autocomplete="content"/>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-4">
+        <Button class="w-3/4 flex justify-center py-3" :class="{ 'opacity-25': form.processing }"
+                :disabled="form.processing">
+          Create!
         </Button>
       </div>
-
-      <div class="w-full md:w-1/2">
-        <BreezeLabel for="content" value="Words"/>
-        <TextArea v-model="form.content" id="content" class="mt-1 block w-full" required
-                  autocomplete="content"/>
-      </div>
-    </div>
-
-    <div class="flex justify-center mt-4">
-      <Button class="w-1/2 flex justify-center py-3" :class="{ 'opacity-25': form.processing }"
-              :disabled="form.processing">
-        Create!
-      </Button>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>

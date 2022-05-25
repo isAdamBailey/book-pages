@@ -10,13 +10,20 @@
 
     <template #authenticated-actions>
       <div class="flex mb-10 mt-5 mx-5">
-        <div v-if="!newPageFormOpen" class="w-full">
-          <Button v-if="!newPageFormOpen" @click="newPageFormOpen = true" class="w-full flex justify-center py-5">Add
-            New
-            Page
+        <div v-if="!settingsOpen" class="w-full">
+          <Button @click="settingsOpen = true" class="w-full flex justify-center py-5">
+            Open Settings
           </Button>
         </div>
-        <NewPageForm v-else @close-form="newPageFormOpen = false" :book="book"/>
+        <div v-else class="w-full">
+          <div>
+            <BreezeValidationErrors class="mb-4"/>
+          </div>
+          <div class="flex flex-col md:flex-row justify-around">
+            <NewPageForm @close-form="settingsOpen = false" :book="book"/>
+            <EditForm :book="book"/>
+          </div>
+        </div>
       </div>
     </template>
 
@@ -35,20 +42,22 @@
 
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import {Head} from '@inertiajs/inertia-vue3';
 import Button from "@/Components/Button";
 import {onMounted, ref} from "vue";
 import NewPageForm from "@/Pages/Book/NewPageForm";
+import EditForm from "@/Pages/Book/EditForm";
 
 const props = defineProps({
   book: Object,
 });
 
-let newPageFormOpen = ref(false)
+let settingsOpen = ref(false)
 
 onMounted(() => {
   if (props.book.pages.length < 1) {
-    newPageFormOpen.value = true
+    settingsOpen.value = true
   }
 })
 </script>
