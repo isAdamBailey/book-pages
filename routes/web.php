@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
 
         Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
-        Route::put('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
+        Route::post('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
         Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
     });
 });

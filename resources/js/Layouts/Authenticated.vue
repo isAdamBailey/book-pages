@@ -1,16 +1,16 @@
 <script setup>
-import {ref, computed} from 'vue';
+import {ref} from 'vue';
 import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue';
 import BreezeDropdown from '@/Components/Dropdown.vue';
 import BreezeDropdownLink from '@/Components/DropdownLink.vue';
 import BreezeNavLink from '@/Components/NavLink.vue';
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import {Link, usePage} from '@inertiajs/inertia-vue3';
+import {Link} from '@inertiajs/inertia-vue3';
+import { usePermissions } from '@/permissions'
+
+const { canEditPages } = usePermissions();
 
 const showingNavigationDropdown = ref(false);
-const canEditPages = computed(() => {
-  return usePage().props.value.auth.user.permissions_list.includes('edit pages');
-})
 </script>
 
 <template>
@@ -119,7 +119,6 @@ const canEditPages = computed(() => {
 
       <!-- Page Content -->
       <main>
-        <slot v-if="canEditPages" name="authenticated-actions" />
         <slot/>
       </main>
     </div>

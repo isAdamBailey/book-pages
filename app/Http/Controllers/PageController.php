@@ -28,7 +28,6 @@ class PageController extends Controller
 
         $book->pages()->create([
             'content' => $request->input('content'),
-            'page_number' => $request->page_number,
             'image_path' => $image
         ]);
 
@@ -45,7 +44,9 @@ class PageController extends Controller
     public function update(UpdatePageRequest $request, Page $page): Redirector|RedirectResponse|Application
     {
         if($request->hasFile('image')) {
-            Storage::disk('s3')->delete($page->image_path);
+            if (Storage::exists($page->image_path)) {
+                Storage::delete($page->image_path);
+            }
             $image = $request->file('image')->storePublicly('book/'.$page->book->slug);
             $page->image_path = $image;
         }
