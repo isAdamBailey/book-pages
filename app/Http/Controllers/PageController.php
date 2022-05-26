@@ -9,6 +9,7 @@ use App\Models\Page;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
@@ -35,36 +36,40 @@ class PageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Page  $page
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Page $page)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePageRequest  $request
-     * @param  \App\Models\Page  $page
-     * @return \Illuminate\Http\Response
+     * @param  UpdatePageRequest  $request
+     * @param  Page  $page
+     * @return Application|Redirector|RedirectResponse
      */
-    public function update(UpdatePageRequest $request, Page $page)
+    public function update(UpdatePageRequest $request, Page $page): Redirector|RedirectResponse|Application
     {
-        //
+        if($request->hasFile('image')) {
+            Storage::disk('s3')->delete($page->image_path);
+            $image = $request->file('image')->storePublicly('book/'.$page->book->slug);
+            $page->image_path = $image;
+        }
+
+        if ($request->has('content')) {
+            $page->content = $request->input('content');
+        }
+
+        $page->save();
+
+        return redirect(route('books.show', $page->book));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Page  $page
-     * @return \Illuminate\Http\Response
+     * @param  Page  $page
+     * @return Application|Redirector|RedirectResponse
      */
-    public function destroy(Page $page)
+    public function destroy(Page $page): Redirector|RedirectResponse|Application
     {
-        //
+        Storage::disk('s3')->delete($page->image_path);
+        $page->delete();
+
+        return redirect(route('books.show', $page->book));
     }
 }

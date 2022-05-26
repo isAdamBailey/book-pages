@@ -13,7 +13,7 @@ class UpdatePageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdatePageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'content' => 'string|max:255',
+            'image' => 'image'
         ];
     }
 }
