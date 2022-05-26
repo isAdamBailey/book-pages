@@ -8,7 +8,7 @@
               class="w-full">
         Edit Page
       </Button>
-      <EditPageForm v-if="showPageSettings" :
+      <EditPageForm v-if="showPageSettings"
                     :page="page"
                     @close-page-form="showPageSettings = false"/>
     </div>
