@@ -4,6 +4,7 @@ import {useForm} from '@inertiajs/inertia-vue3';
 import Button from "@/Components/Button";
 import {ref} from "vue";
 import TextArea from "@/Components/TextArea";
+import DeletePageForm from "@/Pages/Book/DeletePageForm";
 
 const emit = defineEmits(['close-page-form'])
 
@@ -57,7 +58,7 @@ const submit = () => {
 </script>
 
 <template>
-  <div class="bg-white rounded p-5">
+  <div class="border-t-2 bg-white rounded p-5 mt-10">
     <form @submit.prevent="submit">
       <div class="flex flex-wrap">
         <div class="w-full md:w-1/4">
@@ -97,5 +98,6 @@ const submit = () => {
         </Button>
       </div>
     </form>
+    <DeletePageForm :page="page" />
   </div>
 </template>
