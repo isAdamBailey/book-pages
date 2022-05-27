@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PermissionsController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,7 +19,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard/Index');
+        return Inertia::render('Dashboard/Index', [
+            'users' => ['data' => User::all()]
+        ]);
     })->name('dashboard');
 
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
@@ -31,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
         Route::post('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
         Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
+
+        Route::put('/users/permissions', [PermissionsController::class, 'update'])->name('users.permissions');
     });
 });
 

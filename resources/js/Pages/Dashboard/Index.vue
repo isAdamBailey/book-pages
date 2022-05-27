@@ -1,7 +1,13 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import {Head} from '@inertiajs/inertia-vue3';
 import NewBookForm from "@/Pages/Dashboard/NewBookForm";
+import UsersForm from "@/Pages/Dashboard/UsersForm";
+
+defineProps({
+  users: Array
+})
 </script>
 
 <template>
@@ -15,6 +21,9 @@ import NewBookForm from "@/Pages/Dashboard/NewBookForm";
     </template>
 
     <div class="py-12">
+      <div class="flex justify-center mb-4">
+        <BreezeValidationErrors/>
+      </div>
       <div class="flex flex-wrap justify-around space-y-2 md:space-y-0">
         <div class="w-full md:w-1/2 sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -29,6 +38,7 @@ import NewBookForm from "@/Pages/Dashboard/NewBookForm";
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
               <h3 class="text-xl font-semibold border-b">Users</h3>
+              <UsersForm :users="users" />
             </div>
           </div>
         </div>

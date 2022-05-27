@@ -2,7 +2,6 @@
 import BreezeButton from '@/Components/Button.vue';
 import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import {useForm} from '@inertiajs/inertia-vue3';
 
 const form = useForm({
@@ -17,8 +16,6 @@ const submit = () => {
 </script>
 
 <template>
-  <BreezeValidationErrors class="mb-4"/>
-
   <form @submit.prevent="submit">
     <div>
       <BreezeLabel for="title" value="Title"/>
