@@ -27,8 +27,19 @@ class RegistrationTest extends TestCase
         ]);
 
         $response->assertStatus(302);
-//        $this->assertAuthenticated();
-//        $response->assertRedirect(RouteServiceProvider::HOME);
+    }
+
+    public function test_new_users_cannot_register_with_incorrect_secret()
+    {
+        $response = $this->post('/register', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'registration_secret' => 'wrongggggg'
+        ]);
+
+        $response->assertStatus(302);
     }
 
     public function test_new_users_can_register_with_secret()

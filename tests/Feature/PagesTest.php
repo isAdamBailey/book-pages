@@ -56,7 +56,7 @@ class PagesTest extends TestCase
         $book = Book::factory()->has(Page::factory())->create();
         $page = $book->pages->first();
 
-        $this->put(route('pages.update', $page))->assertStatus(403);
+        $this->post(route('pages.update', $page))->assertStatus(403);
     }
 
     public function test_page_is_updated()
@@ -74,7 +74,7 @@ class PagesTest extends TestCase
             'image' => UploadedFile::fake()->image('photo1.jpg')
         ];
 
-        $response = $this->put(route('pages.update', $page), $payload);
+        $response = $this->post(route('pages.update', $page), $payload);
 
         $filePath = 'book/'.$book->slug.'/'.$payload['image']->hashName();
         Storage::disk('s3')->assertExists($filePath);

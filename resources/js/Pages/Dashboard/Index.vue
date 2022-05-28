@@ -6,7 +6,7 @@ import NewBookForm from "@/Pages/Dashboard/NewBookForm";
 import UsersForm from "@/Pages/Dashboard/UsersForm";
 
 defineProps({
-  users: Array
+  users: Object
 })
 </script>
 

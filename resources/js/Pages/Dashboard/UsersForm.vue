@@ -87,6 +87,6 @@ const userIsAdmin = (user) => {
 };
 
 defineProps({
-  users: Array
+  users: Object
 })
 </script>
