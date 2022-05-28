@@ -24,7 +24,7 @@ class UpdatePageRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'string|max:255',
+            'content' => 'string',
             'image' => 'image'
         ];
     }
