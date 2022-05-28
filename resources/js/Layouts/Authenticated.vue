@@ -15,7 +15,7 @@ const showingNavigationDropdown = ref(false);
 
 <template>
   <div>
-    <div class="min-h-screen bg-gradient-to-r from-green-200 to-gray-100">
+    <div class="min-h-screen bg-gradient-to-r from-green-300 to-yellow-100">
       <nav class="bg-white border-b border-gray-100">
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +33,7 @@ const showingNavigationDropdown = ref(false);
                 <BreezeNavLink v-if="canEditPages" :href="route('dashboard')" :active="route().current('dashboard')">
                   Dashboard
                 </BreezeNavLink>
-                <BreezeNavLink :href="route('books.index')" :active="route().current('books.index')">
+                <BreezeNavLink :href="route('books.index')" :active="route().current('books.*')">
                   Books
                 </BreezeNavLink>
               </div>
@@ -89,7 +89,7 @@ const showingNavigationDropdown = ref(false);
             <BreezeResponsiveNavLink v-if="canEditPages" :href="route('dashboard')" :active="route().current('dashboard')">
               Dashboard
             </BreezeResponsiveNavLink>
-            <BreezeResponsiveNavLink :href="route('books.index')" :active="route().current('books.index')">
+            <BreezeResponsiveNavLink :href="route('books.index')" :active="route().current('books.*')">
               Books
             </BreezeResponsiveNavLink>
           </div>
