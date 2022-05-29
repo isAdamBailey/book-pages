@@ -59,7 +59,7 @@ const showingNavigationDropdown = ref(false);
                     </span>
                   </template>
 
-                  <template #content>
+                  <template #content v-if="canEditPages">
                     <BreezeDropdownLink :href="route('logout')" method="post" as="button">
                       Log Out
                     </BreezeDropdownLink>
