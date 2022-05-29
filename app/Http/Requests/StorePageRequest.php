@@ -26,7 +26,10 @@ class StorePageRequest extends FormRequest
         return [
             'book_id' => 'integer|required',
             'content' => 'string|nullable|required_without:image',
-            'image' => 'image|required_without:content'
+            'image' => [
+                'mimes:jpg,jpeg,bmp,png,svg,webp,avi,mpeg,quicktime,mp4',
+                'required_without:content'
+            ]
         ];
     }
 }

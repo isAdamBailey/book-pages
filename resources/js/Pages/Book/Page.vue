@@ -1,6 +1,10 @@
 <template>
   <div class="p-1 bg-white">
-    <img v-if="page.image_path" class="rounded" :src="page.image_path" alt="image">
+    <video v-if="isVideo" controls class="rounded">
+      <source :src="page.image_path">
+      Your browser does not support the video tag.
+    </video>
+    <img v-else-if="page.image_path" class="rounded" :src="page.image_path" alt="image">
     <p class="prose px-3 py-3">{{ page.content }}</p>
     <div v-if="canEditPages">
       <Button v-if="!showPageSettings"
@@ -17,7 +21,7 @@
 
 <script setup>
 import Button from "@/Components/Button";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import EditPageForm from "@/Pages/Book/EditPageForm";
 import {usePermissions} from "@/permissions";
 
@@ -25,6 +29,13 @@ const {canEditPages} = usePermissions();
 
 const props = defineProps({
   page: Object
+})
+
+const isVideo = computed(() => {
+  const videoFormats = ['mp4','avi', 'mpeg', 'quicktime'];
+  return videoFormats.some(function (suffix) {
+    return props.page.image_path.endsWith(suffix);
+  });
 })
 
 let showPageSettings = ref(false);
