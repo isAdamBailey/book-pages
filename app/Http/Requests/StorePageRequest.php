@@ -25,8 +25,8 @@ class StorePageRequest extends FormRequest
     {
         return [
             'book_id' => 'integer|required',
-            'content' => 'string|required',
-            'image' => 'image|nullable'
+            'content' => 'string|nullable|required_without:image',
+            'image' => 'image|required_without:content'
         ];
     }
 }

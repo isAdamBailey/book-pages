@@ -87,8 +87,7 @@ const submit = () => {
 
         <div class="w-full md:w-3/4">
           <BreezeLabel for="content" value="Words"/>
-          <TextArea v-model="form.content" id="content" class="mt-1 block w-full" required
-                    autocomplete="content"/>
+          <TextArea v-model="form.content" id="content" class="mt-1 block w-full"/>
         </div>
       </div>
 
