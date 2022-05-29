@@ -39,4 +39,8 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+Route::fallback(function () {
+    return Inertia::render('Error', ['status' => 404]);
+})->name('404.show');
+
 require __DIR__.'/auth.php';

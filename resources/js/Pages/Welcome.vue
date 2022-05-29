@@ -24,23 +24,23 @@ defineProps({
           <p class="mt-4 text-gray-300 text-xl text-gray-600">An application to save books and pictures for Colin!</p>
           <div class="mt-6">
             <div v-if="$page.props.auth.user">
-              <Button>
-                <a :href="route('books.index')">
+              <Link :href="route('books.index')">
+                <Button>
                   View Books
-                </a>
-              </Button>
+                </Button>
+              </Link>
             </div>
             <div class="flex justify-around" v-else>
-              <Button>
-                <a :href="route('login')">
+              <Link :href="route('login')">
+                <Button>
                   Log In
-                </a>
-              </Button>
-              <Button>
-                <a :href="route('register')">
+                </Button>
+              </Link>
+              <Link :href="route('register')">
+                <Button>
                   Register
-                </a>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
