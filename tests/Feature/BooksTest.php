@@ -50,6 +50,13 @@ class BooksTest extends TestCase
                 ->component('Book/Show')
                 ->url('/book/'.$book->slug)
                 ->has('book.title')
+                ->has('book.excerpt')
+                ->has('book.author')
+                ->has('pages.data', 2)
+                ->has('pages.per_page')
+                ->has('pages.next_page_url')
+                ->has('pages.prev_page_url')
+                ->has('pages.first_page_url')
         );
     }
 

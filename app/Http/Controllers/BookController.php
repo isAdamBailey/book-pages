@@ -11,15 +11,16 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function index(): \Inertia\Response
+    public function index(): Response
     {
         $books = Book::query()
             ->withCount('pages')
@@ -56,14 +57,13 @@ class BookController extends Controller
      * Display the specified resource.
      *
      * @param  Book  $book
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function show(Book $book): \Inertia\Response
+    public function show(Book $book): Response
     {
-        $book = $book->load('pages');
-
         return Inertia::render('Book/Show', [
-            'book' => $book
+            'book' => $book,
+            'pages' => $book->pages()->simplePaginate(2)
         ]);
     }
 
