@@ -34,7 +34,6 @@ class BookController extends Controller
 
         return Inertia::render('Books', [
             'books' => [
-                'per_page' => $books->count(),
                 'data' => $books
             ]
         ]);

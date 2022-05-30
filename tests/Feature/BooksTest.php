@@ -35,7 +35,6 @@ class BooksTest extends TestCase
                     ->where('pages_count', $books[0]->pages->count())
                     ->etc()
                 )
-                ->has('books.per_page')
         );
     }
 
