@@ -21,7 +21,7 @@
           <div class="flex justify-between">
             <p class="prose mb-5">{{ book.excerpt }}</p>
             <img v-if="book.pages[0]?.image_path"
-                 class="w-1/3 rounded-lg ml-1"
+                 class="max-h-16 rounded-lg ml-1"
                  :src="book.pages[0].image_path"
                  alt="cover image"/>
           </div>
