@@ -26,6 +26,12 @@ class Page extends Model
         return Storage::url($value);
     }
 
+    public function scopeHasImage($query)
+    {
+        return $query->where('image_path', 'like', '%.jpg')
+                ->orWhere('image_path', 'like', '%.png');
+    }
+
     public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);

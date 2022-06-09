@@ -24,11 +24,7 @@ class BookController extends Controller
     {
         $books = Book::query()
             ->withCount('pages')
-            ->with(['pages' => function ($q) {
-                $q->where('image_path', 'like', '%.jpg')
-                    ->orWhere('image_path', 'like', '%.png')
-                    ->first();
-            }])
+            ->with(['pages' => fn ($q) => $q->hasImage()])
             ->orderBy('updated_at', 'desc')
             ->get();
 
