@@ -1,11 +1,11 @@
 <template>
-  <div class="p-1 bg-white">
+  <div class="p-1 border-4 border-gray-900 bg-yellow-200 h-full flex flex-col justify-between">
     <video v-if="isVideo" controls class="rounded">
       <source :src="page.image_path">
       Your browser does not support the video tag.
     </video>
     <img v-else-if="page.image_path" class="rounded" :src="page.image_path" alt="image">
-    <p class="prose px-3 py-3">{{ page.content }}</p>
+    <p class="prose px-3 py-3 text-gray-900">{{ page.content }}</p>
     <div v-if="canEditPages">
       <Button v-if="!showPageSettings"
               @click="showPageSettings = true"

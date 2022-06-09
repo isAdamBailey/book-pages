@@ -3,7 +3,7 @@
 
   <BreezeAuthenticatedLayout>
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <h2 class="font-semibold text-3xl text-gray-900 leading-tight">
         Books
       </h2>
     </template>
@@ -12,16 +12,16 @@
         class="mt-3 md:mt-0 mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(22rem,1fr))] gap-2 md:p-4"
     >
       <Link :href="route('books.show', book.slug)" v-for="book in books.data" :key="book.id"
-            class="bg-white overflow-hidden shadow-sm">
-        <div class="p-6 bg-white">
-          <div class="flex flex-wrap justify-between mb-5 border-b">
-            <h3 class="font-bold text-lg">{{ book.title }}</h3>
-            <p v-if="book.author" class="text-sm text-grey-500">by: {{ book.author }}</p>
+            class="border-4 border-gray-900 overflow-hidden shadow-sm">
+        <div class="p-6 bg-yellow-200 h-full flex flex-col justify-between">
+          <div class="flex flex-wrap justify-between mb-5 border-b border-gray-900">
+            <h3 class="font-bold text-2xl w-full">{{ book.title }}</h3>
+            <p v-if="book.author" class="text-sm text-grey-900">by: {{ book.author }}</p>
           </div>
           <div class="flex justify-between">
             <p class="prose mb-5">{{ book.excerpt }}</p>
             <img v-if="book.pages[0]?.image_path"
-                 class="w-1/3 rounded-lg"
+                 class="w-1/3 rounded-lg ml-1"
                  :src="book.pages[0].image_path"
                  alt="cover image"/>
           </div>

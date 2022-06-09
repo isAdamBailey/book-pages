@@ -4,7 +4,7 @@
   <BreezeAuthenticatedLayout>
     <template #header>
       <Link :href="pages.first_page_url" class="flex justify-between">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight w-3/4">
+        <h2 class="font-semibold text-3xl text-gray-900 leading-tight w-3/4">
           {{ book.title }} <span v-if="book.author" class="text-base text-gray-500">by: {{ book.author }}</span>
         </h2>
         <Button v-if="pages.current_page !== 1" class="w-1/8">Beginning</Button>

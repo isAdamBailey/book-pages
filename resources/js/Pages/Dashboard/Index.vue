@@ -15,7 +15,7 @@ defineProps({
 
   <BreezeAuthenticatedLayout>
     <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <h2 class="font-semibold text-3xl text-gray-900 leading-tight">
         Dashboard
       </h2>
     </template>
