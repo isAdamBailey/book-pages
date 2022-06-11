@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="flex justify-around">
+    <div class="flex justify-around" v-if="pages.total > 0">
       <p class="border border-gray-900 rounded-full w-8 h-8 text-sm text-center pt-1.5 bg-yellow-200 font-bold">
         {{ pages.from }}
       </p>
@@ -46,7 +46,7 @@
         <Page :page="page"/>
       </div>
     </div>
-    <div class="flex justify-around pb-20 mt-5">
+    <div v-if="pages.per_page < pages.total" class="flex justify-around pb-20 mt-5">
       <Link :href="pages.prev_page_url || pages.last_page_url">
         <Button aria-label="previous page"
                 class="p-5">
@@ -85,7 +85,7 @@ const props = defineProps({
 let settingsOpen = ref(false)
 
 onMounted(() => {
-  if (props.pages.length < 1) {
+  if (props.pages.total === 0) {
     settingsOpen.value = true
   }
 })
