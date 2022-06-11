@@ -56,6 +56,7 @@ class BooksTest extends TestCase
                 ->has('pages.next_page_url')
                 ->has('pages.prev_page_url')
                 ->has('pages.first_page_url')
+                ->has('pages.last_page_url')
         );
     }
 

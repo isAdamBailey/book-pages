@@ -1,6 +1,6 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" id="Capa_1" x="0px"
-       y="0px" viewBox="0 0 31.143 31.143" style="enable-background:new 0 0 31.143 31.143;">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" id="Capa_1" height="31"
+       width="31" viewBox="0 0 31.143 31.143">
     <g>
       <g id="c100_arrow">
         <path

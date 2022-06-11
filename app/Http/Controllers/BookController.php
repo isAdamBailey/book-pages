@@ -58,7 +58,7 @@ class BookController extends Controller
     {
         return Inertia::render('Book/Show', [
             'book' => $book,
-            'pages' => $book->pages()->simplePaginate(2)
+            'pages' => $book->pages()->paginate(2)
         ]);
     }
 

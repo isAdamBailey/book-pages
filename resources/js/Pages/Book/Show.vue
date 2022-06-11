@@ -37,22 +37,16 @@
       </div>
     </div>
     <div class="flex justify-around pb-20 mt-5">
-      <Link :href="pages.prev_page_url">
+      <Link :href="pages.prev_page_url || pages.last_page_url">
         <Button aria-label="previous page"
-                :disabled="!pages.prev_page_url"
-                :class="{ 'opacity-50': !pages.prev_page_url }"
-                class="py-5">
-          <ArrowIcon class="rotate-180 mr-3"/>
-          Previous Page
+                class="p-5">
+          <ArrowIcon class="rotate-180"/>
         </Button>
       </Link>
-      <Link :href="pages.next_page_url">
+      <Link :href="pages.next_page_url || pages.first_page_url">
         <Button aria-label="next page"
-                :disabled="!pages.next_page_url"
-                :class="{ 'opacity-50': !pages.next_page_url }"
-                class="py-5">
-          Next Page
-          <ArrowIcon class="ml-3"/>
+                class="p-5">
+          <ArrowIcon />
         </Button>
       </Link>
     </div>
