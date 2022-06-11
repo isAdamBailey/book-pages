@@ -14,8 +14,8 @@
 
     <div v-if="canEditPages" class="flex mb-10 mt-5 mx-5">
       <div v-if="!settingsOpen" class="w-full">
-        <Button @click="settingsOpen = true" class="w-full flex justify-center py-5">
-          Open Settings
+        <Button @click="settingsOpen = true" class="w-full flex justify-center py-5 font-bold">
+          Add Page / Edit Book
         </Button>
       </div>
       <div v-else class="w-full">
