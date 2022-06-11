@@ -5,7 +5,7 @@
       Your browser does not support the video tag.
     </video>
     <img v-else-if="page.image_path" class="rounded" :src="page.image_path" alt="image">
-    <p class="prose px-3 py-3 text-gray-900">{{ page.content }}</p>
+    <p class="prose px-3 py-3 text-gray-900" v-html="page.content"></p>
     <div v-if="canEditPages">
       <Button v-if="!showPageSettings"
               @click="showPageSettings = true"

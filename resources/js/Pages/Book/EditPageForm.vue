@@ -3,8 +3,8 @@ import BreezeLabel from '@/Components/Label.vue';
 import {useForm} from '@inertiajs/inertia-vue3';
 import Button from "@/Components/Button";
 import {ref} from "vue";
-import TextArea from "@/Components/TextArea";
 import DeletePageForm from "@/Pages/Book/DeletePageForm";
+import Wysiwyg from "@/Components/Wysiwyg";
 
 const emit = defineEmits(['close-page-form'])
 
@@ -86,7 +86,7 @@ const submit = () => {
 
         <div class="w-full md:w-3/4">
           <BreezeLabel for="content" value="Words"/>
-          <TextArea v-model="form.content" id="content" class="mt-1 block w-full" required
+          <Wysiwyg v-model="form.content" id="content" class="mt-1 block w-full"
                     autocomplete="content"/>
         </div>
       </div>
