@@ -29,10 +29,20 @@
       </div>
     </div>
 
+    <div class="flex justify-around">
+      <p class="border border-gray-900 rounded-full w-8 h-8 text-sm text-center pt-1.5 bg-yellow-200 font-bold">
+        {{ pages.from }}
+      </p>
+      <p v-if="pages.from !== pages.to"
+         class="border border-gray-900 rounded-full w-8 h-8 text-sm text-center pt-1.5 bg-yellow-200 font-bold">
+        {{ pages.to }}
+      </p>
+    </div>
+
     <div
-        class="mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(22rem,1fr))] gap-2 md:p-4"
+        class="mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(22rem,1fr))] gap-2 pt-3 md:p-3"
     >
-      <div v-for="page in pages.data" :key="page.id" class="bg-white overflow-hidden shadow-sm rounded">
+      <div v-for="page in pages.data" :key="pages.id" class="bg-yellow-200 overflow-hidden">
         <Page :page="page"/>
       </div>
     </div>
@@ -46,7 +56,7 @@
       <Link :href="pages.next_page_url || pages.first_page_url">
         <Button aria-label="next page"
                 class="p-5">
-          <ArrowIcon />
+          <ArrowIcon/>
         </Button>
       </Link>
     </div>
