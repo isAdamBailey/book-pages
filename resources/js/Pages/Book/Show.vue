@@ -3,11 +3,18 @@
 
   <BreezeAuthenticatedLayout>
     <template #header>
-      <Link :href="pages.first_page_url" class="flex justify-between">
-        <h2 class="font-semibold text-3xl text-gray-900 leading-tight w-3/4">
-          {{ book.title }} <span v-if="book.author" class="text-base text-gray-500">by: {{ book.author }}</span>
-        </h2>
-        <Button v-if="pages.current_page !== 1" class="w-1/8">Beginning</Button>
+      <Link :href="pages.first_page_url"
+            class="w-full"
+            as="button"
+            @click="beginningButtonDisabled = true"
+            :disabled="beginningButtonDisabled"
+      >
+        <div class="flex justify-between">
+          <h2 class="font-semibold text-3xl text-gray-900 leading-tight">
+            {{ book.title }} <span v-if="book.author" class="text-base text-gray-500">by: {{ book.author }}</span>
+          </h2>
+          <Button v-if="pages.current_page !== 1" class="w-1/8">Beginning</Button>
+        </div>
       </Link>
 
     </template>
@@ -88,6 +95,7 @@ const props = defineProps({
 
 const prevButtonDisabled = ref(false)
 const nextButtonDisabled = ref(false)
+const beginningButtonDisabled = ref(false)
 let settingsOpen = ref(false)
 
 onMounted(() => {
