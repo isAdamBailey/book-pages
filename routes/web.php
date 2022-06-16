@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\AdminController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
         Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 
-        Route::put('/users/permissions', [PermissionsController::class, 'update'])->name('users.permissions');
+        Route::put('/admin/permissions', [AdminController::class, 'update'])->name('admin.permissions');
     });
 });
 

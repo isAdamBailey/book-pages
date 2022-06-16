@@ -79,7 +79,7 @@ const form = useForm({
 const setPermissions = (user, permissions) => {
   form.user = user;
   form.permissions = permissions;
-  form.put(route('users.permissions'), {});
+  form.put(route('admin.permissions'), {});
 };
 
 const userIsAdmin = (user) => {

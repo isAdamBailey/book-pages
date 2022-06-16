@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class UserPermissionsTest extends TestCase
+class AdminPermissionsTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -23,7 +23,7 @@ class UserPermissionsTest extends TestCase
             'user' => $editUser->toArray(),
             'permissions' => ['edit pages']
         ];
-        $response = $this->put(route('users.permissions'), $payload);
+        $response = $this->put(route('admin.permissions'), $payload);
 
         $this->assertTrue($editUser->fresh()->hasPermissionTo('edit pages'));
 
@@ -43,9 +43,28 @@ class UserPermissionsTest extends TestCase
             'user' => $editUser->toArray(),
             'permissions' => []
         ];
-        $response = $this->put(route('users.permissions'), $payload);
+        $response = $this->put(route('admin.permissions'), $payload);
 
         $this->assertFalse($editUser->fresh()->hasPermissionTo('edit pages'));
+
+        $response->assertRedirect(route('dashboard'));
+    }
+
+    public function test_users_can_be_deleted()
+    {
+        $this->actingAs($user = User::factory()->create());
+        $user->givePermissionTo('edit pages');
+
+        $deleteUser = User::factory()->create();
+        $deleteUser->givePermissionTo('edit pages');
+        $this->assertTrue($deleteUser->hasPermissionTo('edit pages'));
+
+        $payload = [
+            'user' => $deleteUser->toArray(),
+        ];
+        $response = $this->put(route('admin.destroy'), $payload);
+
+        $this->assertDatabaseMissing('users', $deleteUser);
 
         $response->assertRedirect(route('dashboard'));
     }
