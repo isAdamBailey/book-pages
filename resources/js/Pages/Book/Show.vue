@@ -47,17 +47,21 @@
       </div>
     </div>
     <div v-if="pages.per_page < pages.total" class="flex justify-around pb-20 mt-5">
-      <Link :href="pages.prev_page_url || pages.last_page_url">
-        <Button aria-label="previous page"
-                class="p-5">
+      <Link :href="pages.prev_page_url || pages.last_page_url"
+            as="button"
+            @click="prevButtonDisabled = true"
+            :disabled="prevButtonDisabled"
+            class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md text-white hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue transition ease-in-out duration-150"
+            aria-label="previous page">
           <ArrowIcon class="rotate-180"/>
-        </Button>
       </Link>
-      <Link :href="pages.next_page_url || pages.first_page_url">
-        <Button aria-label="next page"
-                class="p-5">
+      <Link :href="pages.next_page_url || pages.first_page_url"
+            as="button"
+            @click="nextButtonDisabled = true"
+            :disabled="nextButtonDisabled"
+            class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md text-white hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue transition ease-in-out duration-150"
+            aria-label="next page">
           <ArrowIcon/>
-        </Button>
       </Link>
     </div>
   </BreezeAuthenticatedLayout>
@@ -82,6 +86,8 @@ const props = defineProps({
   pages: Object
 });
 
+const prevButtonDisabled = ref(false)
+const nextButtonDisabled = ref(false)
 let settingsOpen = ref(false)
 
 onMounted(() => {
