@@ -60,11 +60,11 @@ class AdminPermissionsTest extends TestCase
         $this->assertTrue($deleteUser->hasPermissionTo('edit pages'));
 
         $payload = [
-            'user' => $deleteUser->toArray(),
+            'user_id' => $deleteUser->id,
         ];
-        $response = $this->put(route('admin.destroy'), $payload);
+        $response = $this->delete(route('admin.destroy'), $payload);
 
-        $this->assertDatabaseMissing('users', $deleteUser);
+        $this->assertFalse(User::where('id', $deleteUser->id)->exists());
 
         $response->assertRedirect(route('dashboard'));
     }

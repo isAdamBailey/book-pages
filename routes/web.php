@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 
         Route::put('/admin/permissions', [AdminController::class, 'update'])->name('admin.permissions');
+        Route::delete('/admin', [AdminController::class, 'destroy'])->name('admin.destroy');
     });
 });
 

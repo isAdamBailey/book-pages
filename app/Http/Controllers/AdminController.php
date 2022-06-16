@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
@@ -27,6 +28,26 @@ class AdminController extends Controller
         } else {
             $user->syncPermissions();
         }
+
+        return redirect(route('dashboard'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Request  $request
+     * @return Application|Redirector|RedirectResponse
+     * @throws ValidationException
+     */
+    public function destroy(Request $request): Redirector|RedirectResponse|Application
+    {
+        $this->validate($request, [
+            'user_id' => 'required|integer'
+        ]);
+
+        $user = User::find($request->user_id);
+        $user->syncPermissions();
+        $user->delete();
 
         return redirect(route('dashboard'));
     }
