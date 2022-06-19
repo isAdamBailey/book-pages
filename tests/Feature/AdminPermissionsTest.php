@@ -60,7 +60,7 @@ class AdminPermissionsTest extends TestCase
         $this->assertTrue($deleteUser->hasPermissionTo('edit pages'));
 
         $payload = [
-            'user_id' => $deleteUser->id,
+            'email' => $deleteUser->email,
         ];
         $response = $this->delete(route('admin.destroy'), $payload);
 

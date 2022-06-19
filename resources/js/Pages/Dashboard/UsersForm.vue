@@ -26,6 +26,7 @@
               >
                 Role
               </th>
+              <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -55,6 +56,13 @@
                   <DangerButton @click="setPermissions(user, ['edit pages'])">Make Admin</DangerButton>
                 </div>
               </td>
+              <td>
+                <DangerButton @click="deleteUser(user)"
+                              :disabled="isCurrentUser(user)"
+                              :class="{ 'opacity-25': isCurrentUser(user) }">
+                  X
+                </DangerButton>
+              </td>
             </tr>
             </tbody>
           </table>
@@ -67,6 +75,7 @@
 <script setup>
 import DangerButton from "@/Components/DangerButton";
 import {useForm, usePage} from "@inertiajs/inertia-vue3";
+import {Inertia} from '@inertiajs/inertia'
 import Button from "@/Components/Button";
 
 const isCurrentUser = (user) => usePage().props.value.auth.user.name === user.name;
@@ -80,6 +89,14 @@ const setPermissions = (user, permissions) => {
   form.user = user;
   form.permissions = permissions;
   form.put(route('admin.permissions'), {});
+};
+
+const deleteUser = (user) => {
+  Inertia.delete(route('admin.destroy', {email: user.email}),
+      {
+        onBefore: () => confirm(`Are you sure you want to delete ${user.name}? All data related to them will be deleted.`),
+      }
+  )
 };
 
 const userIsAdmin = (user) => {

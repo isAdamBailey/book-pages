@@ -42,10 +42,10 @@ class AdminController extends Controller
     public function destroy(Request $request): Redirector|RedirectResponse|Application
     {
         $this->validate($request, [
-            'user_id' => 'required|integer'
+            'email' => 'required|string'
         ]);
 
-        $user = User::find($request->user_id);
+        $user = User::where('email', $request->email)->first();
         $user->syncPermissions();
         $user->delete();
 
