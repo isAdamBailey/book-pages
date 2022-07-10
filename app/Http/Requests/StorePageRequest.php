@@ -29,8 +29,8 @@ class StorePageRequest extends FormRequest
             'image' => [
                 'max:20000',
                 'mimes:jpg,jpeg,bmp,png,svg,webp,avi,gif,mpeg,quicktime,mp4',
-                'required_without:content'
-            ]
+                'required_without:content',
+            ],
         ];
     }
 }

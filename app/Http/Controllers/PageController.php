@@ -28,7 +28,7 @@ class PageController extends Controller
 
         $book->pages()->create([
             'content' => $request->input('content'),
-            'image_path' => $image
+            'image_path' => $image,
         ]);
 
         return redirect(route('books.show', $book));
@@ -43,7 +43,7 @@ class PageController extends Controller
      */
     public function update(UpdatePageRequest $request, Page $page): Redirector|RedirectResponse|Application
     {
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             if (Storage::exists($page->image_path)) {
                 Storage::delete($page->image_path);
             }

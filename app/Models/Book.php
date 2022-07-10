@@ -14,7 +14,7 @@ class Book extends Model
     use HasSlug;
 
     protected $fillable = [
-        'title', 'excerpt', 'author'
+        'title', 'excerpt', 'author',
     ];
 
     public function pages(): HasMany
@@ -23,7 +23,7 @@ class Book extends Model
             ->orderBy('updated_at', 'desc');
     }
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')

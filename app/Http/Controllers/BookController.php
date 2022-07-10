@@ -30,8 +30,8 @@ class BookController extends Controller
 
         return Inertia::render('Books', [
             'books' => [
-                'data' => $books
-            ]
+                'data' => $books,
+            ],
         ]);
     }
 
@@ -40,11 +40,13 @@ class BookController extends Controller
      *
      * @param  StoreBookRequest  $request
      * @return Application|RedirectResponse|Redirector
+     *
      * @throws ValidationException
      */
     public function store(StoreBookRequest $request): Redirector|RedirectResponse|Application
     {
         $book = Book::create($request->validated());
+
         return redirect(route('books.show', $book));
     }
 
@@ -58,7 +60,7 @@ class BookController extends Controller
     {
         return Inertia::render('Book/Show', [
             'book' => $book,
-            'pages' => $book->pages()->paginate(2)
+            'pages' => $book->pages()->paginate(2),
         ]);
     }
 
@@ -72,6 +74,7 @@ class BookController extends Controller
     public function update(UpdateBookRequest $request, Book $book): Application|RedirectResponse|Redirector
     {
         $book->update($request->validated());
+
         return redirect(route('books.show', Book::find($book->id)));
     }
 

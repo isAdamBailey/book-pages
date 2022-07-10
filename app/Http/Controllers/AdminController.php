@@ -37,12 +37,13 @@ class AdminController extends Controller
      *
      * @param  Request  $request
      * @return Application|Redirector|RedirectResponse
+     *
      * @throws ValidationException
      */
     public function destroy(Request $request): Redirector|RedirectResponse|Application
     {
         $this->validate($request, [
-            'email' => 'required|string'
+            'email' => 'required|string',
         ]);
 
         $user = User::where('email', $request->email)->first();

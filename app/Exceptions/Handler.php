@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-use App\Models\SiteSetting;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
@@ -46,6 +45,7 @@ class Handler extends ExceptionHandler
      * @param $request
      * @param  Throwable  $e
      * @return JsonResponse|Response
+     *
      * @throws Throwable
      */
     public function render($request, Throwable $e): JsonResponse|Response

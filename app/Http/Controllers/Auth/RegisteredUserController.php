@@ -9,7 +9,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 
@@ -38,7 +37,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'registration_secret' => 'required|in:'. env('REGISTRATION_SECRET'),
+            'registration_secret' => 'required|in:'.env('REGISTRATION_SECRET'),
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

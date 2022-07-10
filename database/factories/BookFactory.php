@@ -19,7 +19,7 @@ class BookFactory extends Factory
         return [
             'title' => $this->faker->name(),
             'excerpt' => $this->faker->sentence(),
-            'author' => $this->faker->name()
+            'author' => $this->faker->name(),
         ];
     }
 }

@@ -26,7 +26,7 @@ class StoreBookRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'excerpt' => 'string|max:255|nullable',
-            'author' => 'string|max:100|nullable'
+            'author' => 'string|max:100|nullable',
         ];
     }
 }

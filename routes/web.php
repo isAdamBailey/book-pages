@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\AdminController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -11,14 +11,14 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'appName' => config('app.name')
+        'appName' => config('app.name'),
     ]);
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard/Index', [
-            'users' => ['data' => User::all()]
+            'users' => ['data' => User::all()],
         ]);
     })->name('dashboard');
 
