@@ -78,13 +78,13 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import {Head, Link} from '@inertiajs/inertia-vue3';
-import Button from "@/Components/Button";
+import Button from "@/Components/Button.vue";
 import {onMounted, ref} from "vue";
-import NewPageForm from "@/Pages/Book/NewPageForm";
-import EditForm from "@/Pages/Book/EditBookForm";
+import NewPageForm from "@/Pages/Book/NewPageForm.vue";
+import EditForm from "@/Pages/Book/EditBookForm.vue";
 import {usePermissions} from "@/permissions";
-import Page from "@/Pages/Book/Page";
-import ArrowIcon from '@/Components/ArrowIcon';
+import Page from "@/Pages/Book/Page.vue";
+import ArrowIcon from '@/Components/ArrowIcon.vue';
 
 const {canEditPages} = usePermissions();
 
