@@ -1,10 +1,10 @@
 <script setup>
 import BreezeLabel from '@/Components/Label.vue';
 import {useForm} from '@inertiajs/inertia-vue3';
-import Button from "@/Components/Button";
+import Button from "@/Components/Button.vue";
 import {ref} from "vue";
-import DeletePageForm from "@/Pages/Book/DeletePageForm";
-import Wysiwyg from "@/Components/Wysiwyg";
+import DeletePageForm from "@/Pages/Book/DeletePageForm.vue";
+import Wysiwyg from "@/Components/Wysiwyg.vue";
 
 const emit = defineEmits(['close-page-form'])
 

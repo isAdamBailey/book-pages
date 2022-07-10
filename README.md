@@ -15,7 +15,7 @@ _NOTE: This application is not allowing registration from the public and require
 This project includes [Laravel Sail](https://laravel.com/docs/sail) for local development with Docker.
 
 Simply run `sail up` to start the docker container, then in another terminal, run 
-`npm install && npm run watch` and mix will watch for changes to the code and update webpack.
+`npm install && npm run dev` and mix will watch for changes to the code and update webpack.
 
 ## Production
-Point to `/public` for the build, and `npm install && npm run prod` for the minified build on production.
+Point to `/public` for the build, and `npm install && npm run build` for the minified build on production.

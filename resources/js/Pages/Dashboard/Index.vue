@@ -2,8 +2,8 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import {Head} from '@inertiajs/inertia-vue3';
-import NewBookForm from "@/Pages/Dashboard/NewBookForm";
-import UsersForm from "@/Pages/Dashboard/UsersForm";
+import NewBookForm from "@/Pages/Dashboard/NewBookForm.vue";
+import UsersForm from "@/Pages/Dashboard/UsersForm.vue";
 
 defineProps({
   users: Object

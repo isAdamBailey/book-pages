@@ -73,10 +73,10 @@
 </template>
 
 <script setup>
-import DangerButton from "@/Components/DangerButton";
+import DangerButton from "@/Components/DangerButton.vue";
 import {useForm, usePage} from "@inertiajs/inertia-vue3";
 import {Inertia} from '@inertiajs/inertia'
-import Button from "@/Components/Button";
+import Button from "@/Components/Button.vue";
 
 const isCurrentUser = (user) => usePage().props.value.auth.user.name === user.name;
 

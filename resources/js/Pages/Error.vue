@@ -17,8 +17,8 @@
 </template>
 
 <script setup>
-import Guest from "@/Layouts/Guest";
-import Button from "@/Components/Button";
+import Guest from "@/Layouts/Guest.vue";
+import Button from "@/Components/Button.vue";
 import {Link, Head} from "@inertiajs/inertia-vue3";
 import {computed} from "vue";
 
