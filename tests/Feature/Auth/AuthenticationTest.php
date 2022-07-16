@@ -49,7 +49,7 @@ class AuthenticationTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $this->get('/dashboard')->assertInertia(
-            fn(Assert $page) => $page
+            fn (Assert $page) => $page
                 ->component('Dashboard/Index')
                 ->url('/dashboard')
                 ->has('auth.user.permissions_list', 0)
@@ -61,7 +61,7 @@ class AuthenticationTest extends TestCase
         $this->actingAs($user2);
 
         $this->get('/dashboard')->assertInertia(
-            fn(Assert $page) => $page
+            fn (Assert $page) => $page
                 ->component('Dashboard/Index')
                 ->url('/dashboard')
                 ->has('auth.user.permissions_list', 1)

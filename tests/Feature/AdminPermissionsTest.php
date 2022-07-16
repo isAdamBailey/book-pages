@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AdminPermissionsTest extends TestCase
@@ -21,7 +20,7 @@ class AdminPermissionsTest extends TestCase
 
         $payload = [
             'user' => $editUser->toArray(),
-            'permissions' => ['edit pages']
+            'permissions' => ['edit pages'],
         ];
         $response = $this->put(route('admin.permissions'), $payload);
 
@@ -41,7 +40,7 @@ class AdminPermissionsTest extends TestCase
 
         $payload = [
             'user' => $editUser->toArray(),
-            'permissions' => []
+            'permissions' => [],
         ];
         $response = $this->put(route('admin.permissions'), $payload);
 

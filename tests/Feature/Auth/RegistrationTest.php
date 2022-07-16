@@ -36,7 +36,7 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
-            'registration_secret' => 'wrongggggg'
+            'registration_secret' => 'wrongggggg',
         ]);
 
         $response->assertStatus(302);
@@ -49,7 +49,7 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
-            'registration_secret' => 'elevators'
+            'registration_secret' => 'elevators',
         ]);
 
         $this->assertAuthenticated();

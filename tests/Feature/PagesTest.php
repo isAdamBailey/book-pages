@@ -34,7 +34,7 @@ class PagesTest extends TestCase
         $payload = [
             'book_id' => $book->id,
             'content' => $this->faker->paragraph(),
-            'image' => UploadedFile::fake()->image('photo1.jpg')
+            'image' => UploadedFile::fake()->image('photo1.jpg'),
         ];
 
         $response = $this->post(route('pages.store'), $payload);
@@ -71,7 +71,7 @@ class PagesTest extends TestCase
 
         $payload = [
             'content' => $this->faker->sentence(3),
-            'image' => UploadedFile::fake()->image('photo1.jpg')
+            'image' => UploadedFile::fake()->image('photo1.jpg'),
         ];
 
         $response = $this->post(route('pages.update', $page), $payload);
