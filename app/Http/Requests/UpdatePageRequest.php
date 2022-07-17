@@ -25,7 +25,7 @@ class UpdatePageRequest extends FormRequest
     {
         return [
             'content' => 'string',
-            'image' => 'max:20000,mimes:jpg,jpeg,bmp,png,svg,webp,avi,gif,mpeg,quicktime,mp4',
+            'image' => 'max:40000,mimes:jpg,jpeg,bmp,png,svg,webp,avi,gif,mpeg,quicktime,mp4',
         ];
     }
 }
