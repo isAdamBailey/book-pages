@@ -102,7 +102,7 @@ const showingNavigationDropdown = ref(false);
             </div>
 
             <div class="mt-3 space-y-1">
-              <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
+              <BreezeResponsiveNavLink v-if="canEditPages" :href="route('logout')" method="post" as="button">
                 Log Out
               </BreezeResponsiveNavLink>
             </div>
