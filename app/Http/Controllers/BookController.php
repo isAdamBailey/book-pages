@@ -28,7 +28,7 @@ class BookController extends Controller
             ->orderBy('updated_at', 'desc')
             ->get();
 
-        return Inertia::render('Books', [
+        return Inertia::render('Books/Index', [
             'books' => [
                 'data' => $books,
             ],

@@ -7,8 +7,6 @@ import Button from "@/Components/Button";
 const {canEditPages} = usePermissions();
 
 defineProps({
-  canLogin: Boolean,
-  canRegister: Boolean,
   appName: String,
 })
 </script>

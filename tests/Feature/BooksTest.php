@@ -28,7 +28,7 @@ class BooksTest extends TestCase
 
         $this->get(route('books.index'))->assertInertia(
             fn (Assert $page) => $page
-                ->component('Books')
+                ->component('Books/Index')
                 ->url('/books')
                 ->has('books.data', $books->count())
                 ->has('books.data.0', fn (Assert $page) => $page
