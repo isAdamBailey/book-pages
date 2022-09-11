@@ -27,7 +27,7 @@ class BookController extends Controller
         $books = Book::query()
             ->withCount('pages')
             ->with(['pages' => fn ($q) => $q->hasImage()])
-            ->when($request->filter === "random",
+            ->when($request->filter === 'random',
                 fn ($query) => $query->inRandomOrder(),
                 fn ($query) => $query->orderBy('updated_at', 'desc')
             )
