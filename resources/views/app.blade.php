@@ -17,7 +17,7 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
         @inertiaHead
     </head>
-    <body class="font-sans antialiased" oncontextmenu="return false;">
+    <body class="font-sans antialiased">
         @inertia
 
         @env ('local')

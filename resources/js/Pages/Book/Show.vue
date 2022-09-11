@@ -5,15 +5,11 @@
     <template #header>
       <Link :href="pages.first_page_url"
             class="w-full"
-            as="button"
-            @click="beginningButtonDisabled = true"
-            :disabled="beginningButtonDisabled"
       >
-        <div class="flex justify-between">
+        <div class="flex">
           <h2 class="font-semibold text-3xl text-gray-900 leading-tight">
             {{ book.title }} <span v-if="book.author" class="text-base text-gray-500">by: {{ book.author }}</span>
           </h2>
-          <Button v-if="pages.current_page !== 1" class="w-1/8">Beginning</Button>
         </div>
       </Link>
 
@@ -84,7 +80,7 @@ import NewPageForm from "@/Pages/Book/NewPageForm";
 import EditForm from "@/Pages/Book/EditBookForm";
 import {usePermissions} from "@/permissions";
 import Page from "@/Pages/Book/Page";
-import ArrowIcon from '@/Components/ArrowIcon';
+import ArrowIcon from '@/Components/svg/ArrowIcon';
 
 const {canEditPages} = usePermissions();
 
