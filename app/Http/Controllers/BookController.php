@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
@@ -18,14 +19,18 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  Request  $request
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $books = Book::query()
             ->withCount('pages')
             ->with(['pages' => fn ($q) => $q->hasImage()])
-            ->orderBy('updated_at', 'desc')
+            ->when($request->filter === "random",
+                fn ($query) => $query->inRandomOrder(),
+                fn ($query) => $query->orderBy('updated_at', 'desc')
+            )
             ->get();
 
         return Inertia::render('Books/Index', [
