@@ -27,6 +27,8 @@
         "vue-loader": "^17.0.0"
     },
     "dependencies": {
-        "@tiptap/core": "^2.0.0-beta.193"
+        "@tiptap/core": "^2.0.0-beta.193",
+        "@tiptap/starter-kit": "^2.0.0-beta.189",
+        "@tiptap/vue-3": "^2.0.0-beta.91"
     }
 }
