@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submit" class="text-center mt-10">
-    <DangerButton>Delete {{ buttonText }}</DangerButton>
+    <DangerButton>Delete</DangerButton>
   </form>
 </template>
 
