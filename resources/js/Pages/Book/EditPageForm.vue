@@ -5,6 +5,7 @@ import Button from "@/Components/Button";
 import {ref} from "vue";
 import DeletePageForm from "@/Pages/Book/DeletePageForm";
 import Wysiwyg from "@/Components/Wysiwyg";
+import VideoIcon from "@/Components/svg/VideoIcon";
 
 const emit = defineEmits(['close-page-form'])
 
@@ -17,7 +18,7 @@ const form = useForm({
   image: null,
 });
 
-const imagePreview = ref(null)
+const imagePreview = ref(props.page.image_path)
 
 const imageInput = ref(null)
 
@@ -62,17 +63,20 @@ const submit = () => {
     <form @submit.prevent="submit">
       <div class="flex flex-wrap">
         <div class="w-full md:w-1/4">
-          <BreezeLabel for="imageInput" value="Image"/>
+          <BreezeLabel for="imageInput" value="Media"/>
           <input
               ref="imageInput"
               type="file"
               class="hidden"
               @change="updateImagePreview"
           />
-          <div v-show="imagePreview" class="mt-2">
-          <span class="block h-40 w-40 rounded bg-cover bg-center bg-no-repeat"
-                :style="'background-image: url(\'' + imagePreview + '\');'">
-          </span>
+          <div v-if="imagePreview.startsWith('data:image') || imagePreview.startsWith('https')"
+               class="h-40 w-40 rounded bg-cover bg-center bg-no-repeat"
+               :style="'background-image: url(\'' + imagePreview + '\');'"
+          >
+          </div>
+          <div class="w-3/4" v-else-if="imagePreview.startsWith('data:video')">
+            <VideoIcon class="text-blue-500" />
           </div>
 
           <Button
@@ -80,7 +84,7 @@ const submit = () => {
               type="button"
               @click.prevent="selectNewImage"
           >
-            New Image
+            Update Media
           </Button>
         </div>
 
