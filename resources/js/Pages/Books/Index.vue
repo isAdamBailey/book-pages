@@ -10,7 +10,7 @@
           </h2>
         </Link>
         <Link :href="randomButtonDisabled ? route('books.index', {filter: 'random'}) : null">
-          <Button @click="randomButtonDisabled=true" :disabled="randomButtonDisabled">
+          <Button class="w-14" @click="randomButtonDisabled=true" :disabled="randomButtonDisabled">
             <RoundArrowsIcon/>
           </Button>
         </Link>
