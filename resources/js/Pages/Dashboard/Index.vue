@@ -5,7 +5,7 @@ import {Head} from '@inertiajs/inertia-vue3';
 import NewBookForm from "@/Pages/Dashboard/NewBookForm";
 import UsersForm from "@/Pages/Dashboard/UsersForm";
 
-defineProps({
+const props = defineProps({
   users: Object
 })
 </script>
@@ -29,7 +29,7 @@ defineProps({
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
               <h3 class="text-xl font-semibold border-b mb-10">New Book</h3>
-              <NewBookForm />
+              <NewBookForm :authors="props.users.data" />
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -66,6 +67,7 @@ class BookController extends Controller
         return Inertia::render('Book/Show', [
             'book' => $book,
             'pages' => $book->pages()->paginate(2),
+            'authors' => User::all()->toArray()
         ]);
     }
 

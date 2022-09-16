@@ -27,7 +27,8 @@
         </div>
         <div class="flex flex-col md:flex-row justify-around">
           <NewPageForm @close-form="settingsOpen = false" :book="book"/>
-          <EditForm :book="book"/>
+          <EditForm :book="book"
+                    :authors="authors"/>
         </div>
       </div>
     </div>
@@ -56,7 +57,7 @@
             :disabled="prevButtonDisabled"
             class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md text-white hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue transition ease-in-out duration-150"
             aria-label="previous page">
-          <ArrowIcon class="rotate-180"/>
+        <ArrowIcon class="rotate-180"/>
       </Link>
       <Link :href="pages.next_page_url || pages.first_page_url"
             as="button"
@@ -64,7 +65,7 @@
             :disabled="nextButtonDisabled"
             class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md text-white hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue transition ease-in-out duration-150"
             aria-label="next page">
-          <ArrowIcon/>
+        <ArrowIcon/>
       </Link>
     </div>
   </BreezeAuthenticatedLayout>
@@ -86,7 +87,8 @@ const {canEditPages} = usePermissions();
 
 const props = defineProps({
   book: Object,
-  pages: Object
+  pages: Object,
+  authors: Array
 });
 
 const prevButtonDisabled = ref(false)
