@@ -38,6 +38,24 @@ class BooksTest extends TestCase
         );
     }
 
+    public function test_books_can_be_searched()
+    {
+        $this->actingAs(User::factory()->create());
+
+        Book::factory()->count(30)->create();
+        $searchBooks = Book::factory()->count(3)->create(
+            ["title" => "Adam"]
+        );
+
+        $searchTerm = "Adam";
+        $this->get(route('books.index', ["search" => $searchTerm]))->assertInertia(
+            fn (Assert $page) => $page
+                ->component('Books/Index')
+                ->url('/books?search='.$searchTerm)
+                ->has('books.data', $searchBooks->count())
+        );
+    }
+
     public function test_book_is_returned()
     {
         $this->actingAs(User::factory()->create());

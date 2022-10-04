@@ -1,5 +1,5 @@
 <template>
-  <div class="p-1 border-4 border-gray-900 bg-yellow-200 h-full flex flex-col justify-between">
+  <div class="p-1 border-4 border-gray-900 bg-yellow-100 h-full flex flex-col justify-between">
     <video v-if="isVideo" controls class="rounded">
       <source :src="page.image_path">
       Your browser does not support the video tag.

@@ -12,7 +12,7 @@ defineProps({
   >
     <Link :href="route('books.show', book.slug)" v-for="book in books.data" :key="book.id"
           class="border-4 border-gray-900 overflow-hidden shadow-sm">
-      <div class="p-6 bg-yellow-200 h-full flex flex-col justify-between">
+      <div class="p-6 bg-yellow-100 h-full flex flex-col justify-between">
         <div class="flex flex-wrap justify-between mb-5 border-b border-gray-900">
           <h3 class="font-bold text-2xl w-full">{{ book.title }}</h3>
           <p v-if="book.author" class="text-sm text-grey-900">by: {{ book.author }}</p>

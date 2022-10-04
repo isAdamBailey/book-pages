@@ -34,11 +34,11 @@
     </div>
 
     <div class="flex justify-around" v-if="pages.total > 0">
-      <p class="border border-gray-900 rounded-full w-8 h-8 text-sm text-center pt-1.5 bg-yellow-200 font-bold">
+      <p class="border border-gray-900 rounded-full w-8 h-8 text-sm text-center pt-1.5 bg-yellow-100 font-bold">
         {{ pages.from }}
       </p>
       <p v-if="pages.from !== pages.to"
-         class="border border-gray-900 rounded-full w-8 h-8 text-sm text-center pt-1.5 bg-yellow-200 font-bold">
+         class="border border-gray-900 rounded-full w-8 h-8 text-sm text-center pt-1.5 bg-yellow-100 font-bold">
         {{ pages.to }}
       </p>
     </div>
@@ -46,7 +46,7 @@
     <div
         class="mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(22rem,1fr))] gap-2 pt-3 md:p-3"
     >
-      <div v-for="page in pages.data" :key="pages.id" class="bg-yellow-200 overflow-hidden">
+      <div v-for="page in pages.data" :key="pages.id" class="bg-yellow-100 overflow-hidden">
         <Page :page="page"/>
       </div>
     </div>

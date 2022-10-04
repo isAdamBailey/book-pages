@@ -25,6 +25,7 @@ class BookController extends Controller
      */
     public function index(Request $request): Response
     {
+        $search = $request->search;
         $books = Book::query()
             ->withCount('pages')
             ->with(['pages' => fn ($q) => $q->hasImage()])
@@ -32,11 +33,16 @@ class BookController extends Controller
                 fn ($query) => $query->inRandomOrder(),
                 fn ($query) => $query->orderBy('updated_at', 'desc')
             )
+            ->when($search,
+                fn ($query) => $query->where('title', 'LIKE', '%'.$search.'%')
+                    ->orWhere('excerpt', 'LIKE', '%'.$search.'%')
+            )
             ->get();
 
         return Inertia::render('Books/Index', [
             'books' => [
                 'data' => $books,
+                'search' => $search,
             ],
         ]);
     }
