@@ -7,10 +7,13 @@ import BreezeNavLink from '@/Components/NavLink.vue';
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import {Link} from '@inertiajs/inertia-vue3';
 import { usePermissions } from '@/permissions'
+import { usePage } from '@inertiajs/inertia-vue3'
 
 const { canEditPages } = usePermissions();
 
 const showingNavigationDropdown = ref(false);
+const username = ref(usePage().props.value.auth.user.name)
+
 </script>
 
 <template>
@@ -47,7 +50,7 @@ const showingNavigationDropdown = ref(false);
                     <span class="inline-flex rounded-md">
                         <button type="button"
                                 class="inline-flex border-gray-900 items-center px-3 py-2 border text-sm leading-4 font-medium rounded-md text-gray-500 bg-yellow-200 hover:text-gray-900 focus:outline-none transition ease-in-out duration-150">
-                            {{ $page.props.auth.user.name }}
+                            {{ username }}
 
                             <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20" fill="currentColor">
@@ -59,10 +62,17 @@ const showingNavigationDropdown = ref(false);
                     </span>
                   </template>
 
-                  <template #content v-if="canEditPages">
-                    <BreezeDropdownLink :href="route('logout')" method="post" as="button">
+                  <template #content>
+                    <BreezeDropdownLink
+                        v-if="canEditPages"
+                        :href="route('logout')"
+                        method="post"
+                        as="button">
                       Log Out
                     </BreezeDropdownLink>
+                    <div class="p-5" v-else>
+                      <h3>Hi {{username}} Mommy and Daddy love you!!</h3>
+                    </div>
                   </template>
                 </BreezeDropdown>
               </div>
@@ -105,6 +115,9 @@ const showingNavigationDropdown = ref(false);
               <BreezeResponsiveNavLink v-if="canEditPages" :href="route('logout')" method="post" as="button">
                 Log Out
               </BreezeResponsiveNavLink>
+              <div class="p-5" v-else>
+                <h3>Hi {{username}} Mommy and Daddy love you!!</h3>
+              </div>
             </div>
           </div>
         </div>
