@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div class="flex justify-around" v-if="pages.total > 0">
+    <div class="flex justify-around mt-3" v-if="pages.total > 0">
       <p class="border border-gray-900 rounded-full w-8 h-8 text-sm text-center pt-1.5 bg-yellow-100 font-bold">
         {{ pages.from }}
       </p>
@@ -55,7 +55,7 @@
             as="button"
             @click="prevButtonDisabled = true"
             :disabled="prevButtonDisabled"
-            class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md text-white hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue transition ease-in-out duration-150"
+            class="inline-flex border border-white items-center px-8 py-4 bg-blue-500 border border-transparent rounded-md text-white hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue transition ease-in-out duration-150"
             aria-label="previous page">
         <ArrowIcon class="rotate-180"/>
       </Link>
@@ -63,7 +63,7 @@
             as="button"
             @click="nextButtonDisabled = true"
             :disabled="nextButtonDisabled"
-            class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md text-white hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue transition ease-in-out duration-150"
+            class="inline-flex border border-white items-center px-8 py-4 bg-blue-500 border border-transparent rounded-md text-white hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue transition ease-in-out duration-150"
             aria-label="next page">
         <ArrowIcon/>
       </Link>

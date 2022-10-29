@@ -124,7 +124,7 @@ const username = ref(usePage().props.value.auth.user.name)
       </nav>
 
       <!-- Page Heading -->
-      <header class="border-4 border-gray-900 bg-yellow-300" v-if="$slots.header">
+      <header class="border-2 border-gray-900 bg-yellow-300" v-if="$slots.header">
         <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
           <slot name="header"/>
         </div>
