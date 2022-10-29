@@ -17,10 +17,10 @@ defineProps({
           <h3 class="font-bold text-3xl w-full">{{ book.title }}</h3>
           <p v-if="book.author" class="text-sm text-grey-900">by: {{ book.author }}</p>
         </div>
-        <div class="flex justify-between flex-wrap">
+        <div class="flex justify-center flex-wrap">
           <p class="prose mb-5">{{ book.excerpt }}</p>
           <img v-if="book.pages[0]?.image_path"
-               class="flex-1 rounded-lg ml-1"
+               class="w-52 rounded-lg ml-1"
                :src="book.pages[0].image_path"
                alt="cover image"/>
         </div>

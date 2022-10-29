@@ -28,8 +28,8 @@ class Page extends Model
 
     public function scopeHasImage($query)
     {
-        return $query->where('image_path', 'like', '%.jpg')
-                ->orWhere('image_path', 'like', '%.png');
+        return $query->where('image_path', 'like', '%.jpg%')
+                ->orWhere('image_path', 'like', '%.png%');
     }
 
     public function book(): BelongsTo
