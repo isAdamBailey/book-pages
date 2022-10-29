@@ -10,7 +10,8 @@ import VideoIcon from "@/Components/svg/VideoIcon";
 const emit = defineEmits(['close-page-form'])
 
 const props = defineProps({
-  page: Object
+  page: Object,
+  showPageSettings: false,
 })
 
 const form = useForm({
@@ -102,6 +103,8 @@ const submit = () => {
         </Button>
       </div>
     </form>
-    <DeletePageForm :page="page" />
+    <DeletePageForm
+        :page="page"
+        @close-page-form="$emit('close-page-form')"/>
   </div>
 </template>
