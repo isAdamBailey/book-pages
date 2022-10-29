@@ -19,8 +19,9 @@ defineProps({
         </div>
         <div class="flex justify-between flex-wrap">
           <p class="prose mb-5">{{ book.excerpt }}</p>
-          <img
-               class="flex-1 rounded-lg ml-1 bg-sky-50"
+          <img v-if="book.pages[0]?.image_path"
+               class="flex-1 rounded-lg ml-1"
+               :src="book.pages[0].image_path"
                alt="cover image"/>
         </div>
         <span class="text-sm text-gray-900 font-bold">{{ book.pages_count }} <span class="text-gray-500">pages</span></span>
