@@ -17,8 +17,8 @@ class PageController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('Pictures/Index', [
-            'pictures' => Page::paginate(),
+        return Inertia::render('Photos/Index', [
+            'photos' => Page::with('book')->paginate(),
         ]);
     }
 

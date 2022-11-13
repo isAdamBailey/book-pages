@@ -23,7 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/books', [BookController::class, 'index'])->name('books.index');
     Route::get('/book/{book}', [BookController::class, 'show'])->name('books.show');
 
-    Route::get('/pictures', [PageController::class, 'index'])->name('pictures.index');
+    Route::get('/photos', [PageController::class, 'index'])->name('pictures.index');
 
     Route::group(['middleware' => ['can:edit pages']], function () {
         Route::post('/books', [BookController::class, 'store'])->name('books.store');

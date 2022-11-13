@@ -39,6 +39,9 @@ const username = ref(usePage().props.value.auth.user.name)
                 <BreezeNavLink :href="route('books.index')" :active="route().current('books.*')">
                   Books
                 </BreezeNavLink>
+                <BreezeNavLink :href="route('pictures.index')" :active="route().current('pictures.*')">
+                  Photos
+                </BreezeNavLink>
               </div>
             </div>
 
@@ -101,6 +104,9 @@ const username = ref(usePage().props.value.auth.user.name)
             </BreezeResponsiveNavLink>
             <BreezeResponsiveNavLink :href="route('books.index')" :active="route().current('books.*')">
               Books
+            </BreezeResponsiveNavLink>
+            <BreezeResponsiveNavLink :href="route('pictures.index')" :active="route().current('pictures.*')">
+              Photos
             </BreezeResponsiveNavLink>
           </div>
 
