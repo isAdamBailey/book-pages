@@ -20,7 +20,7 @@ class PageController extends Controller
         $photos = Page::with('book')
             ->where('image_path', 'not like', '%.mp4%')
             ->latest()
-            ->paginate();
+            ->paginate(25);
 
         return Inertia::render('Photos/Index', [
             'photos' => $photos,
