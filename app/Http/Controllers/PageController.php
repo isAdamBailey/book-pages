@@ -8,6 +8,7 @@ use App\Models\Book;
 use App\Models\Page;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -15,10 +16,14 @@ use Inertia\Response;
 
 class PageController extends Controller
 {
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $photos = Page::with('book')
             ->where('image_path', 'not like', '%.mp4%')
+            ->when($request->filter === 'random',
+                fn ($query) => $query->inRandomOrder(),
+                fn ($query) => $query->latest()
+            )
             ->latest()
             ->paginate(25);
 
