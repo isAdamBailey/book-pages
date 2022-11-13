@@ -10,9 +10,18 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PageController extends Controller
 {
+    public function index(): Response
+    {
+        return Inertia::render('Pictures/Index', [
+            'pictures' => Page::paginate(),
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

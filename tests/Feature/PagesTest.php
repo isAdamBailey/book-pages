@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
 class PagesTest extends TestCase
@@ -16,6 +17,20 @@ class PagesTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
+    public function test_pictures_are_returned(): void
+    {
+        $this->actingAs(User::factory()->create());
+
+        Book::factory()->has(Page::factory(13))->count(3)->create();
+
+        $this->get(route('pictures.index'))->assertInertia(
+            fn (Assert $page) => $page
+                ->component('Pictures/Index')
+                ->url('/pictures')
+                ->has('pictures.data', 15)
+
+        );
+    }
     public function test_page_cannot_be_stored_without_permissions()
     {
         $this->actingAs(User::factory()->create());

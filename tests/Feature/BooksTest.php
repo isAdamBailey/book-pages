@@ -20,7 +20,7 @@ class BooksTest extends TestCase
      *
      * @return void
      */
-    public function test_books_are_returned()
+    public function test_books_are_returned(): void
     {
         $this->actingAs(User::factory()->create());
 
