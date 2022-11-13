@@ -18,7 +18,7 @@ class PageController extends Controller
     public function index(): Response
     {
         $photos = Page::with('book')
-            ->where('image_path', 'not like', 'mp4%')
+            ->where('image_path', 'not like', '%.mp4%')
             ->latest()
             ->paginate();
 
